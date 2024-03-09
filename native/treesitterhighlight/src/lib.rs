@@ -1,8 +1,8 @@
-use rustler::{Error as RustlerError, NifStruct, NifUnitEnum, Term as RustlerTerm};
-use tree_sitter_highlight::Error as TSError;
+use rustler::NifUnitEnum;
+use std::fmt::Write;
 use tree_sitter_highlight::HighlightConfiguration;
-use tree_sitter_highlight::HighlightEvent;
 use tree_sitter_highlight::Highlighter;
+use tree_sitter_highlight::HtmlRenderer;
 
 mod atoms {
     rustler::atoms! {
@@ -18,15 +18,7 @@ pub enum Language {
     Rust,
 }
 
-#[derive(NifStruct)]
-#[module = "TreeSitterHighlight.HighlightEvent"]
-pub struct ExHighlightEvent {
-    pub event_type: String,
-    pub start: usize,
-    pub end: usize,
-}
-
-static HIGHLIGHT_NAMES: [&str; 18] = [
+const HIGHLIGHT_NAMES: [&str; 18] = [
     "attribute",
     "constant",
     "function.builtin",
@@ -60,42 +52,37 @@ fn get_config() -> HighlightConfiguration {
     javascript_config
 }
 
-fn make_ex_events(
-    events: impl Iterator<Item = Result<HighlightEvent, TSError>>,
-) -> Vec<ExHighlightEvent> {
-    let mut ex_events: Vec<ExHighlightEvent> = Vec::new();
-    for event in events {
-        let ex_event = match event.unwrap() {
-            HighlightEvent::Source { start, end } => ExHighlightEvent {
-                start,
-                end,
-                event_type: String::from("source"),
-            },
-            HighlightEvent::HighlightStart(start) => ExHighlightEvent {
-                event_type: String::from("highlight start"),
-                start: 0,
-                end: 0,
-            },
-            HighlightEvent::HighlightEnd => ExHighlightEvent {
-                event_type: String::from("highlight end"),
-                start: 0,
-                end: 0,
-            },
-        };
-        ex_events.push(ex_event);
-    }
-    ex_events
-}
-
 #[rustler::nif]
-fn highlight_code(code: &str) -> Vec<ExHighlightEvent> {
+fn render_html(source_code: &str) -> String {
+    let html_attrs: [String; 18] =
+        HIGHLIGHT_NAMES.map(|s| format!(r#"class="{}""#, s.replace(".", "-")));
+
     let mut highlighter = Highlighter::new();
     let highlight_config = get_config();
+    let source_code_bytes = source_code.as_bytes();
     let events = highlighter
-        .highlight(&highlight_config, code.as_bytes(), None, |_| None)
+        .highlight(&highlight_config, source_code_bytes, None, |_| None)
+        .unwrap();
+    let mut renderer = HtmlRenderer::new();
+
+    renderer
+        .render(events, source_code_bytes, &|highlight| {
+            html_attrs[highlight.0].as_bytes()
+        })
         .unwrap();
 
-    make_ex_events(events)
+    let mut html = String::new();
+    for (i, line) in renderer.lines().enumerate() {
+        writeln!(
+            html,
+            r#"<div class="line-wrapper"><span class="line-number">{}</span>{}</div>"#,
+            i + 1,
+            line,
+        )
+        .unwrap();
+    }
+
+    html
 }
 
-rustler::init!("Elixir.TreeSitterHighlight", [highlight_code]);
+rustler::init!("Elixir.TreeSitterHighlight", [render_html]);
