@@ -157,6 +157,16 @@ dependencies = [
 ]
 
 [[package]]
+name = "tree-sitter-elixir"
+version = "0.1.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "1bc0b1f3e6d9f12ca22ae5171f32fd154e3aea29dff565d05ef785c28931415b"
+dependencies = [
+ "cc",
+ "tree-sitter",
+]
+
+[[package]]
 name = "tree-sitter-highlight"
 version = "0.20.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -183,6 +193,7 @@ version = "0.1.0"
 dependencies = [
  "rustler",
  "tree-sitter",
+ "tree-sitter-elixir",
  "tree-sitter-highlight",
  "tree-sitter-javascript",
 ]
