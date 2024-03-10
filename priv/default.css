@@ -1,0 +1,81 @@
+:root {
+    --code-default-color: black;
+    --code-block-background-color: #f5f5f5;
+    --token-comment-color: rgb(165, 166, 170);
+    --token-function-color: rgb(91, 121, 227);
+    --token-keyword-color: rgb(164, 73, 171);
+    --token-module-color: rgb(56, 130, 183);
+    --token-special-string-color: rgb(173, 110, 38);
+    --token-string-color: rgb(100, 159, 88);
+    --token-builtin-color: rgb(102, 159, 89);
+    --token-attribute-color: rgb(91, 121, 227);
+    --token-number-color: rgb(173, 110, 37);
+    --token-operator-color: rgb(91, 121, 227);
+}
+/* :root[data-theme="dark"] {
+     #ddd;
+     #2a2a2a;
+     #ab8ac1;
+     #769acb;
+     #d97f26;
+     #769acb;
+     #ee6868;
+     #83a300;
+     #83a300;
+     #ee6868;
+     #ee6868;
+     #ee6868;
+     #3e999f;
+     #ff9011;
+     #8d8d8b;
+     #8ca375;
+} */
+
+.code-block code {
+    font-family:
+        Roboto Mono,
+        monospace;
+    display: grid;
+    line-height: 1.5;
+    color: var(--code-default-color);
+    background-color: var(--code-block-background-color);
+}
+
+.line-number {
+    user-select: none;
+    text-align: right;
+    color: rgba(27, 31, 35, 0.3);
+    padding: 0 10px;
+}
+
+.token.attribute {
+    color: var(--token-attribute-color);
+}
+
+.token.builtin {
+    color: var(--token-builtin-color);
+}
+.token.comment {
+    color: var(--token-comment-color);
+}
+.token.function {
+    color: var(--token-function-color);
+}
+.token.keyword {
+    color: var(--token-keyword-color);
+}
+.token.module {
+    color: var(--token-module-color);
+}
+.token.number {
+    color: var(--token-number-color);
+}
+.token.operator {
+    color: var(--token-operator-color);
+}
+.token.string {
+    color: var(--token-string-color);
+}
+.token.string.special {
+    color: var(--token-special-string-color);
+}

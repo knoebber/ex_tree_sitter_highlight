@@ -7,9 +7,13 @@ use tree_sitter_highlight::{
 
 mod atoms {
     rustler::atoms! {
-        elixir,
-        javascript,
-        unsupported_langauge,
+       elixir,
+       highlight_cancelled,
+       highlight_invalid_language,
+       highlight_unknown,
+       javascript,
+       ok,
+       unsupported_language,
     }
 }
 
@@ -61,7 +65,7 @@ fn get_config(language: Atom) -> Result<HighlightConfiguration, NifError> {
             "",
         )
     } else {
-        return Err(NifError::Atom("unsupported_language"));
+        return Err(NifError::Term(Box::new(atoms::unsupported_language())));
     };
 
     let mut config = match config_result {
@@ -74,20 +78,18 @@ fn get_config(language: Atom) -> Result<HighlightConfiguration, NifError> {
 }
 
 fn translate_highlight_error(e: HighlightError) -> NifError {
-    match e {
-        HighlightError::Cancelled => NifError::Atom("highlight_cancelled"),
-        HighlightError::InvalidLanguage => NifError::Atom("highlight_invalid_language"),
-        HighlightError::Unknown => NifError::Atom("highlight_unknown"),
-    }
+    NifError::Term(Box::new(match e {
+        HighlightError::Cancelled => atoms::highlight_cancelled(),
+        HighlightError::InvalidLanguage => atoms::highlight_invalid_language(),
+        HighlightError::Unknown => atoms::highlight_unknown(),
+    }))
 }
 
 #[rustler::nif]
-fn render_html(source_code: &str, language: NifTerm) -> NifResult<String> {
-    let language: Atom = language.decode().unwrap();
-
-    let html_attrs = HIGHLIGHT_NAMES.map(|s| format!(r#"class="{}""#, s.replace(".", "-")));
+fn render_html(source_code: &str, language: NifTerm) -> NifResult<(Atom, String)> {
+    let html_attrs = HIGHLIGHT_NAMES.map(|s| format!(r#"class="token {}""#, s.replace(".", " ")));
     let mut highlighter = Highlighter::new();
-    let highlight_config = get_config(language)?;
+    let highlight_config = get_config(language.decode().unwrap())?;
 
     let source_code_bytes = source_code.as_bytes();
     let events = match highlighter.highlight(&highlight_config, source_code_bytes, None, |_| None) {
@@ -104,7 +106,13 @@ fn render_html(source_code: &str, language: NifTerm) -> NifResult<String> {
         Err(e) => return Err(translate_highlight_error(e)),
     }
 
+    let language_string = language.atom_to_string().unwrap();
     let mut html = String::new();
+    writeln!(
+        html,
+        r#"<pre class="code-block language-{language_string}"><code>"#
+    )
+    .unwrap();
     for (i, line) in renderer.lines().enumerate() {
         writeln!(
             html,
@@ -114,8 +122,9 @@ fn render_html(source_code: &str, language: NifTerm) -> NifResult<String> {
         )
         .unwrap();
     }
+    writeln!(html, r#"</code></pre>"#).unwrap();
 
-    Ok(html)
+    Ok((atoms::ok(), html))
 }
 
 rustler::init!("Elixir.TreeSitterHighlight", [render_html]);
