@@ -8,14 +8,13 @@ defmodule TreeSitterHighlight do
   def render_html(_source_code, _language_atom), do: :erlang.nif_error(:nif_not_loaded)
 
   def language_from_filename(path) do
-    y = %{s: 1}
-    x = 2
-    dbg(y.s)
-
     case Path.extname(path) do
       ".ex" -> :elixir
       ".exs" -> :elixir
+      ".html" -> :html
       ".js" -> :javascript
+      ".rs" -> :rust
+      ".css" -> :css
       _ -> :unknown
     end
   end

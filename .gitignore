@@ -26,3 +26,6 @@ ex_tree_sitter_highlight-*.tar
 /tmp/
 
 *.so
+
+out.html
+.DS_Store
