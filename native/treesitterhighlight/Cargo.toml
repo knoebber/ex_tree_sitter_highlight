@@ -10,6 +10,7 @@ path = "src/lib.rs"
 crate-type = ["cdylib"]
 
 [dependencies]
+tree-sitter-heex = { git = "https://github.com/knoebber/tree-sitter-heex" }
 rustler = "0.31.0"
 tree-sitter = "=0.20.10"
 tree-sitter-css = "0.20.0"

@@ -48,12 +48,12 @@ const HIGHLIGHT_NAMES: [&str; 22] = [
 ];
 
 lazy_static! {
-    static ref JS_CONFIG: HighlightConfiguration = {
+    static ref CSS_CONFIG: HighlightConfiguration = {
         let mut c = HighlightConfiguration::new(
-            tree_sitter_javascript::language(),
-            tree_sitter_javascript::HIGHLIGHT_QUERY,
-            tree_sitter_javascript::INJECTION_QUERY,
-            tree_sitter_javascript::LOCALS_QUERY,
+            tree_sitter_css::language(),
+            tree_sitter_css::HIGHLIGHTS_QUERY,
+            "",
+            "",
         )
         .unwrap();
         c.configure(&HIGHLIGHT_NAMES);
@@ -75,26 +75,16 @@ lazy_static! {
         c.configure(&HIGHLIGHT_NAMES);
         c
     };
-    static ref RUST_CONFIG: HighlightConfiguration = {
+    static ref HEEX_CONFIG: HighlightConfiguration = {
         let mut c = HighlightConfiguration::new(
-            tree_sitter_rust::language(),
-            tree_sitter_rust::HIGHLIGHT_QUERY,
-            tree_sitter_rust::INJECTIONS_QUERY,
+            tree_sitter_heex::language(),
+            tree_sitter_heex::HIGHLIGHTS_QUERY,
+            tree_sitter_heex::INJECTIONS_QUERY,
             "",
         )
         .unwrap();
         c.configure(&HIGHLIGHT_NAMES);
-        c
-    };
-    static ref CSS_CONFIG: HighlightConfiguration = {
-        let mut c = HighlightConfiguration::new(
-            tree_sitter_css::language(),
-            tree_sitter_css::HIGHLIGHTS_QUERY,
-            "",
-            "",
-        )
-        .unwrap();
-        c.configure(&HIGHLIGHT_NAMES);
+        println!("using heex");
         c
     };
     static ref HTML_CONFIG: HighlightConfiguration = {
@@ -102,6 +92,28 @@ lazy_static! {
             tree_sitter_html::language(),
             tree_sitter_html::HIGHLIGHTS_QUERY,
             tree_sitter_html::INJECTIONS_QUERY,
+            "",
+        )
+        .unwrap();
+        c.configure(&HIGHLIGHT_NAMES);
+        c
+    };
+    static ref JS_CONFIG: HighlightConfiguration = {
+        let mut c = HighlightConfiguration::new(
+            tree_sitter_javascript::language(),
+            tree_sitter_javascript::HIGHLIGHT_QUERY,
+            tree_sitter_javascript::INJECTION_QUERY,
+            tree_sitter_javascript::LOCALS_QUERY,
+        )
+        .unwrap();
+        c.configure(&HIGHLIGHT_NAMES);
+        c
+    };
+    static ref RUST_CONFIG: HighlightConfiguration = {
+        let mut c = HighlightConfiguration::new(
+            tree_sitter_rust::language(),
+            tree_sitter_rust::HIGHLIGHT_QUERY,
+            tree_sitter_rust::INJECTIONS_QUERY,
             "",
         )
         .unwrap();
@@ -124,11 +136,12 @@ fn render_html<'a>(source_code: &str, l: NifTerm) -> NifResult<(Atom, String)> {
 
     let get_config = |lang: &str| {
         Some(match lang {
-            "javascript" => &*JS_CONFIG,
-            "elixir" => &*ELIXIR_CONFIG,
-            "rust" => &*RUST_CONFIG,
-            "html" => &*HTML_CONFIG,
             "css" => &*CSS_CONFIG,
+            "elixir" => &*ELIXIR_CONFIG,
+            "html" => &*HTML_CONFIG,
+            "heex" => &*HEEX_CONFIG,
+            "javascript" => &*JS_CONFIG,
+            "rust" => &*RUST_CONFIG,
             _ => {
                 return None;
             }

@@ -177,6 +177,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "tree-sitter-heex"
+version = "0.0.1"
+source = "git+https://github.com/knoebber/tree-sitter-heex#b5ad6e34eea18a15bbd1466ca707a17f9bff7b93"
+dependencies = [
+ "cc",
+ "tree-sitter",
+]
+
+[[package]]
 name = "tree-sitter-highlight"
 version = "0.20.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -226,6 +235,7 @@ dependencies = [
  "tree-sitter",
  "tree-sitter-css",
  "tree-sitter-elixir",
+ "tree-sitter-heex",
  "tree-sitter-highlight",
  "tree-sitter-html",
  "tree-sitter-javascript",
