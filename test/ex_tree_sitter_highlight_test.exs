@@ -1,75 +1,21 @@
 defmodule TreeSitterHighlightTest do
   use ExUnit.Case
 
-  defp strip_space(s), do: s |> String.replace("\n", "") |> String.replace(" ", "")
-
-  defp html_equal(expected, actual) do
-    assert strip_space(actual) == strip_space(expected)
-  end
-
   test "unsupported language" do
     assert {:error, :unsupported_language} = TreeSitterHighlight.render_html("123", :unknown)
   end
 
   test "highlights elixir" do
-    assert {:ok, html} =
-             TreeSitterHighlight.render_html(
-               ~S"""
-               test "highlights elixir" do
-                  assert {:ok, html} = TreeSitterHighlight.render_html("", :elixir)
-               end
-               """,
-               :elixir
-             )
+    assert {:ok, html} = TreeSitterHighlight.render_html("def foo(bar), do: 3", :elixir)
 
-    assert html_equal(
-             ~S"""
-             <pre class="code-block">
-             <code>
-             <div class="line-wrapper">
-             <span class="line-number">1</span>
-             <span class="function">test</span><span class="string">&quot;highlights elixir&quot;</span> <span class="keyword">do</span>
-             </div>
-             <div class="line-wrapper">
-             <span class="line-number">2</span>
-             <span class="function">assert</span>
-             <span class="punctuation-bracket">{</span>
-             <span class="string-special">:ok</span>
-             <span class="punctuation-delimiter">,</span>
-             html<span class="punctuation-bracket">}</span>
-             <span class="operator">=</span>
-             <span class="module">TreeSitterHighlight</span>
-             <span class="operator">.</span>
-             <span class="function">
-             render_html</span>
-             <span class="punctuation-bracket">(</span><span class="string">&quot;&quot;
-             </span><span class="punctuation-delimiter">,</span>
-             <span class="string-special">:elixir</span>
-             <span class="punctuation-bracket">)</span>
-             </div>
-             <div class="line-wrapper"><span class="line-number">3</span><span class="keyword">end</span></div>
-             </code>
-             </pre>
-             """,
+    assert "<pre class=\"code-block language-elixir\"><code>\n<div class=\"line-wrapper\"><span class=\"line-number\">1</span><span class=\"token keyword\">def</span> <span class=\"token function\">foo</span><span class=\"token punctuation bracket\">(</span>bar<span class=\"token punctuation bracket\">)</span><span class=\"token punctuation delimiter\">,</span> <span class=\"token string special\">do: </span><span class=\"token number\">3</span>\n</div>\n</code></pre>\n" ==
              html
-           )
   end
 
-  test "highlights javascript" do
-    assert {:ok, html} = TreeSitterHighlight.render_html("const y = 2;", :javascript)
+  test "highlights heex" do
+    assert {:ok, html} = TreeSitterHighlight.render_html("<.card :if={@foo == bar}>", :heex)
 
-    assert html_equal(
-             ~S"""
-             <pre class="code-block">
-             <code>
-             <div class="line-wrapper">
-             <span class="line-number">1</span>
-             <span class="keyword">const</span> y <span class="operator">=</span> <span class="number">2</span>
-             <span class="punctuation-delimiter">;</span></div>
-             </code>
-             </pre>
-             """,
+    assert "<pre class=\"code-block language-heex\"><code>\n<div class=\"line-wrapper\"><span class=\"line-number\">1</span><span class=\"token punctuation bracket\">&lt;</span><span class=\"token punctuation delimiter\">.</span><span class=\"token function\">card</span> <span class=\"token keyword\">:if</span><span class=\"token operator\">=</span><span class=\"token punctuation bracket\">{</span><span class=\"token attribute\">@</span><span class=\"token attribute\">foo</span> <span class=\"token operator\">==</span> bar<span class=\"token punctuation bracket\">}</span><span class=\"token punctuation bracket\">&gt;</span>\n</div>\n</code></pre>\n" ==
              html
-           )
   end
 end

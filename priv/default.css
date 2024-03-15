@@ -10,31 +10,12 @@
     --token-module-color: rgb(56, 130, 183);
     --token-number-color: rgb(173, 110, 37);
     --token-operator-color: rgb(91, 121, 227);
-    --token-property-color: rgb(173, 110, 38);
+    --token-property-color: rgb(73, 110, 38);
     --token-special-string-color: rgb(173, 110, 38);
     --token-string-color: rgb(100, 159, 88);
-    --token-tag-color: rgb(91, 121, 227);
+    --token-tag-color: rgb(164, 73, 171);
     --token-builtin-variable-color: rgb(173, 110, 37);
 }
-/* :root[data-theme="dark"] {
-     #ddd;
-     #2a2a2a;
-     #ab8ac1;
-     #769acb;
-     #d97f26;
-     #769acb;
-     #ee6868;
-     #83a300;
-     #83a300;
-     #ee6868;
-     #ee6868;
-     #ee6868;
-     #3e999f;
-     #ff9011;
-     #8d8d8b;
-     #8ca375;
-} */
-
 .code-block code {
     font-family:
         Roboto Mono,
