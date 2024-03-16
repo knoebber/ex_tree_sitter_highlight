@@ -1,22 +1,32 @@
 defmodule TreeSitterHighlightTest do
   use ExUnit.Case
+  doctest TreeSitterHighlight
 
   test "unsupported language" do
     assert {:error, :unsupported_language} = TreeSitterHighlight.render_html("123", :unknown)
   end
 
-  test "highlights elixir" do
-    assert {:ok, html} = TreeSitterHighlight.render_html("def foo(bar), do: 3", :elixir)
+  test "write example files" do
+    output_dir = "example_output/ex_tree_sitter_highlight"
 
-    assert "<pre class=\"code-block language-elixir\"><code>\n<div class=\"line-wrapper\"><span class=\"line-number\">1</span><span class=\"token keyword\">def</span> <span class=\"token function\">foo</span><span class=\"token punctuation bracket\">(</span>bar<span class=\"token punctuation bracket\">)</span><span class=\"token punctuation delimiter\">,</span> <span class=\"token string special\">do: </span><span class=\"token number\">3</span>\n</div>\n</code></pre>\n" ==
-             html
-  end
+    Enum.each(
+      [
+        {"test/fixtures/example_liveview.ex", "#{output_dir}/elixir_liveview.html"},
+        {"native/treesitterhighlight/src/lib.rs", "#{output_dir}/rust.html"}
+      ],
+      fn {input, output} ->
+        assert :ok ==
+                 TreeSitterHighlight.write_highlighted_file(input, output)
 
-  test "highlights heex" do
-    assert {:ok, html} = TreeSitterHighlight.render_html("<.card :if={@foo == bar}>", :heex)
+        assert {:ok, content} = File.read(output)
+        assert String.contains?(content, "</html>")
+        assert String.contains?(content, "</style>")
+        assert String.contains?(content, "</pre>")
+        assert String.contains?(content, "</code>")
+      end
+    )
 
-    assert "<pre class=\"code-block language-heex\"><code>\n<div class=\"line-wrapper\"><span class=\"line-number\">1</span><span class=\"token punctuation bracket\">&lt;</span><span class=\"token punctuation delimiter\">.</span><span class=\"token function\">card</span> <span class=\"token keyword\">:if</span><span class=\"token operator\">=</span><span class=\"token punctuation bracket\">{</span><span class=\"token attribute\">@</span><span class=\"token attribute\">foo</span> <span class=\"token operator\">==</span> bar<span class=\"token punctuation bracket\">}</span><span class=\"token punctuation bracket\">&gt;</span>\n</div>\n</code></pre>\n" ==
-             html
+    assert {:error, :enoent} == TreeSitterHighlight.write_highlighted_file("file/not/found", "")
   end
 
   test "everything is ok" do
