@@ -42,6 +42,17 @@ const HIGHLIGHT_NAMES: [&str; 22] = [
     "variable.parameter",
 ];
 
+static C_CONFIG: Lazy<HighlightConfiguration> = Lazy::new(|| {
+    let mut c = HighlightConfiguration::new(
+        tree_sitter_c::language(),
+        tree_sitter_c::HIGHLIGHT_QUERY,
+        "",
+        "",
+    )
+    .unwrap();
+    c.configure(&HIGHLIGHT_NAMES);
+    c
+});
 static CSS_CONFIG: Lazy<HighlightConfiguration> = Lazy::new(|| {
     let mut c = HighlightConfiguration::new(
         tree_sitter_css::language(),
@@ -69,6 +80,30 @@ static ELIXIR_CONFIG: Lazy<HighlightConfiguration> = Lazy::new(|| {
     .unwrap();
     c.configure(&HIGHLIGHT_NAMES);
     println!("configured elixir");
+    c
+});
+
+static GO_CONFIG: Lazy<HighlightConfiguration> = Lazy::new(|| {
+    let mut c = HighlightConfiguration::new(
+        tree_sitter_go::language(),
+        tree_sitter_go::HIGHLIGHT_QUERY,
+        "",
+        "",
+    )
+    .unwrap();
+    c.configure(&HIGHLIGHT_NAMES);
+    c
+});
+
+static HASKELL_CONFIG: Lazy<HighlightConfiguration> = Lazy::new(|| {
+    let mut c = HighlightConfiguration::new(
+        tree_sitter_haskell::language(),
+        tree_sitter_haskell::HIGHLIGHTS_QUERY,
+        "",
+        tree_sitter_haskell::LOCALS_QUERY,
+    )
+    .unwrap();
+    c.configure(&HIGHLIGHT_NAMES);
     c
 });
 
@@ -108,6 +143,18 @@ static JS_CONFIG: Lazy<HighlightConfiguration> = Lazy::new(|| {
     c
 });
 
+static JSON_CONFIG: Lazy<HighlightConfiguration> = Lazy::new(|| {
+    let mut c = HighlightConfiguration::new(
+        tree_sitter_json::language(),
+        tree_sitter_json::HIGHLIGHT_QUERY,
+        "",
+        "",
+    )
+    .unwrap();
+    c.configure(&HIGHLIGHT_NAMES);
+    c
+});
+
 static RUST_CONFIG: Lazy<HighlightConfiguration> = Lazy::new(|| {
     let mut c = HighlightConfiguration::new(
         tree_sitter_rust::language(),
@@ -130,11 +177,15 @@ fn translate_highlight_error(e: HighlightError) -> NifError {
 
 fn get_lang_tuples<'a>() -> Vec<(&'a str, &'a Lazy<HighlightConfiguration>, &'a str)> {
     vec![
+        ("c", &C_CONFIG, ".c .h"),
         ("css", &CSS_CONFIG, ".css"),
         ("elixir", &ELIXIR_CONFIG, ".ex .exs"),
-        ("html", &HTML_CONFIG, ".html"),
+        ("go", &GO_CONFIG, ".go"),
+        ("haskell", &HASKELL_CONFIG, ".hs"),
         ("heex", &HEEX_CONFIG, ".heex"),
+        ("html", &HTML_CONFIG, ".html"),
         ("javascript", &JS_CONFIG, ".js .mjs"),
+        ("json", &JSON_CONFIG, ".json"),
         ("rust", &RUST_CONFIG, ".rs"),
     ]
 }

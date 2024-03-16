@@ -163,6 +163,16 @@ dependencies = [
 ]
 
 [[package]]
+name = "tree-sitter-c"
+version = "0.20.8"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "4bbd5f3d8658c08581f8f2adac6c391c2e9fa00fe9246bf6c5f52213b9cc6b72"
+dependencies = [
+ "cc",
+ "tree-sitter",
+]
+
+[[package]]
 name = "tree-sitter-css"
 version = "0.20.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -177,6 +187,26 @@ name = "tree-sitter-elixir"
 version = "0.1.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "1bc0b1f3e6d9f12ca22ae5171f32fd154e3aea29dff565d05ef785c28931415b"
+dependencies = [
+ "cc",
+ "tree-sitter",
+]
+
+[[package]]
+name = "tree-sitter-go"
+version = "0.20.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "1ad6d11f19441b961af2fda7f12f5d0dac325f6d6de83836a1d3750018cc5114"
+dependencies = [
+ "cc",
+ "tree-sitter",
+]
+
+[[package]]
+name = "tree-sitter-haskell"
+version = "0.15.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "ac635b86d6cc127706bc0831f4b83f5503ed8ac2f8cd22831ba3e5535445b4f2"
 dependencies = [
  "cc",
  "tree-sitter",
@@ -223,6 +253,16 @@ dependencies = [
 ]
 
 [[package]]
+name = "tree-sitter-json"
+version = "0.20.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "5a9a38a9c679b55cc8d17350381ec08d69fa1a17a53fcf197f344516e485ed4d"
+dependencies = [
+ "cc",
+ "tree-sitter",
+]
+
+[[package]]
 name = "tree-sitter-rust"
 version = "0.20.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -240,12 +280,16 @@ dependencies = [
  "once_cell",
  "rustler",
  "tree-sitter",
+ "tree-sitter-c",
  "tree-sitter-css",
  "tree-sitter-elixir",
+ "tree-sitter-go",
+ "tree-sitter-haskell",
  "tree-sitter-heex",
  "tree-sitter-highlight",
  "tree-sitter-html",
  "tree-sitter-javascript",
+ "tree-sitter-json",
  "tree-sitter-rust",
 ]
 

@@ -18,4 +18,13 @@ defmodule TreeSitterHighlightTest do
     assert "<pre class=\"code-block language-heex\"><code>\n<div class=\"line-wrapper\"><span class=\"line-number\">1</span><span class=\"token punctuation bracket\">&lt;</span><span class=\"token punctuation delimiter\">.</span><span class=\"token function\">card</span> <span class=\"token keyword\">:if</span><span class=\"token operator\">=</span><span class=\"token punctuation bracket\">{</span><span class=\"token attribute\">@</span><span class=\"token attribute\">foo</span> <span class=\"token operator\">==</span> bar<span class=\"token punctuation bracket\">}</span><span class=\"token punctuation bracket\">&gt;</span>\n</div>\n</code></pre>\n" ==
              html
   end
+
+  test "everything is ok" do
+    TreeSitterHighlight.get_supported_languages()
+    |> Enum.each(fn lang_atom
+                    when is_atom(lang_atom) ->
+      assert {:ok, html} = TreeSitterHighlight.render_html("\"foo\"", lang_atom)
+      assert is_binary(html)
+    end)
+  end
 end

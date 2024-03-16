@@ -1,6 +1,7 @@
 # ExTreeSitterHighlight
 
-**TODO: Add description**
+Elixir nif binding for
+[tree_sitter_higlight](https://docs.rs/tree-sitter-highlight/latest/tree_sitter_highlight/).
 
 ## Installation
 
@@ -14,7 +15,3 @@ def deps do
   ]
 end
 ```
-
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at <https://hexdocs.pm/ex_tree_sitter_highlight>.
