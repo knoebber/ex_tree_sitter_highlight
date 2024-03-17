@@ -21,25 +21,24 @@ end
 
 **Supported languages:**
 
-```
+```elixir
 iex(1)> TreeSitterHighlight.get_supported_languages
 [:c, :css, :elixir, :go, :haskell, :heex, :html, :javascript, :json, :rust]
 ```
 
 **Render html:**
-```
+
+```elixir
 iex(1)> TreeSitterHighlight.render_html("1", :elixir)
 {:ok,
  "<pre class=\"code-block language-elixir\"><code>\n<div class=\"line-wrapper\"><span class=\"line-number\">1</span><span class=\"token number\">1</span>\n</div>\n</code></pre>\n"}
  ```
 
-```
-
 **Get the default stylesheet:**
 
-```
+```elixir
 iex(3)> TreeSitterHighlight.get_default_css_content()
-...output omitted...
+# returns content of priv/default.css
 ```
 
 ## Example Output
