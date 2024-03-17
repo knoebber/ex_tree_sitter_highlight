@@ -16,11 +16,12 @@ def deps do
 end
 ```
 
-## Example
+## Examples
 
 This project's rust source code:
+
 https://knoebber.github.io/ex_tree_sitter_highlight/example_output/ex_tree_sitter_highlight/rust.html
 
-## [Elixir Makeup](https://github.com/elixir-makeup/makeup) Comparison
+Comparison with [Elixir Makeup](https://github.com/elixir-makeup/makeup):
 
 https://knoebber.github.io/ex_tree_sitter_highlight/comparison.html
