@@ -29,33 +29,34 @@ defmodule TreeSitterHighlightTest do
     assert {:error, :enoent} == TreeSitterHighlight.write_highlighted_file("file/not/found", "")
   end
 
-  test "write makeup output" do
-    output_dir = "example_output/makeup"
+  # TODO: makeup as a test-only dep conflicts with hex docs dep.
+  # test "write makeup output" do
+  #   output_dir = "example_output/makeup"
 
-    Enum.each(
-      [
-        # TODO: pull in more makeup dependencies and highlight other file types for comparison
-        {"test/fixtures/example_liveview.ex", "#{output_dir}/elixir_liveview.html"}
-      ],
-      fn {input, output} ->
-        {:ok, source} = File.read(input)
-        highlighted_source = Makeup.highlight(source)
-        stylesheet = Makeup.stylesheet()
+  #   Enum.each(
+  #     [
+  #       # TODO: pull in more makeup dependencies and highlight other file types for comparison
+  #       {"test/fixtures/example_liveview.ex", "#{output_dir}/elixir_liveview.html"}
+  #     ],
+  #     fn {input, output} ->
+  #       {:ok, source} = File.read(input)
+  #       highlighted_source = Makeup.highlight(source)
+  #       stylesheet = Makeup.stylesheet()
 
-        File.write!(output, ~s"""
-          <!DOCTYPE html>
-          <style>
-          #{stylesheet}
-          </style>
-          <html>
-          <body>
-          #{highlighted_source}
-          </body>
-          </html>
-        """)
-      end
-    )
-  end
+  #       File.write!(output, ~s"""
+  #         <!DOCTYPE html>
+  #         <style>
+  #         #{stylesheet}
+  #         </style>
+  #         <html>
+  #         <body>
+  #         #{highlighted_source}
+  #         </body>
+  #         </html>
+  #       """)
+  #     end
+  #   )
+  # end
 
   test "everything is ok" do
     TreeSitterHighlight.get_supported_languages()

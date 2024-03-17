@@ -27,8 +27,7 @@ defmodule ExTreeSitterHighlight.MixProject do
   defp deps do
     [
       {:rustler, "~> 0.31.0", runtime: false},
-      {:makeup, "~> 1.1.1", only: [:test]},
-      {:makeup_elixir, "~> 0.14.0", only: [:test]}
+      {:ex_doc, "~> 0.31", only: :dev, runtime: false}
     ]
   end
 
@@ -36,12 +35,11 @@ defmodule ExTreeSitterHighlight.MixProject do
     [
       files: [
         "lib",
-        "priv",
+        "priv/*.css",
         ".formatter.exs",
         "mix.exs",
         "README.md",
         "LICENSE",
-        "src",
         "native/treesitterhighlight/.cargo",
         "native/treesitterhighlight/src",
         "native/treesitterhighlight/cargo.lock",
