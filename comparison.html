@@ -1,0 +1,59 @@
+<!doctype html>
+<style>
+    html,
+    body {
+        height: 100%;
+        margin: 0;
+    }
+
+    div {
+        display: flex;
+        height: 100%;
+    }
+
+    section {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    iframe {
+        height: 100%;
+    }
+
+    h1,
+    h2 {
+        text-align: center;
+    }
+</style>
+<html>
+    <body>
+        <h1>Elixir Code highlight comparison</h1>
+        <h2>with default project stylesheet</h2>
+        <div>
+            <section>
+                <h2>
+                    <a
+                        href="https://github.com/knoebber/ex_tree_sitter_highlight"
+                        >ex_tree_sitter_highlight</a
+                    >
+                </h2>
+                <iframe
+                    title="ex_tree_sitter_highlight"
+                    src="https://knoebber.github.io/ex_tree_sitter_highlight/example_output/ex_tree_sitter_highlight/elixir_liveview.html"
+                >
+                </iframe>
+            </section>
+            <section>
+                <h2>
+                    <a href="https://github.com/elixir-makeup/makeup">makeup</a>
+                </h2>
+                <iframe
+                    title="makeup"
+                    src="https://knoebber.github.io/ex_tree_sitter_highlight/example_output/makeup/elixir_liveview.html"
+                >
+                </iframe>
+            </section>
+        </div>
+    </body>
+</html>

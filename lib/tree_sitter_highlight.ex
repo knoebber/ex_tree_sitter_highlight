@@ -65,6 +65,9 @@ defmodule TreeSitterHighlight do
              html, body, pre {
                 margin: 0;
              }
+             pre {
+                width: fit-content;
+             }
              #{css_content}
              </style>
              <html>
