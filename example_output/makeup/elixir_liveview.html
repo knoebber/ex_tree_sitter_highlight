@@ -81,7 +81,7 @@
   </style>
   <html>
   <body>
-  <pre class="highlight"><code><span class="kd">defmodule</span><span class="w"> </span><span class="nc">PurpleWeb.BoardLive.Index</span><span class="w"> </span><span class="k" data-group-id="9132451584-1">do</span><span class="w">
+  <pre class="highlight"><code><span class="kd">defmodule</span><span class="w"> </span><span class="nc">PurpleWeb.BoardLive.Index</span><span class="w"> </span><span class="k" data-group-id="6426878961-1">do</span><span class="w">
   </span><span class="na">@moduledoc</span><span class="w"> </span><span class="s">&quot;&quot;&quot;
   Live view for viewing/managing user&#39;s boards.
   &quot;&quot;&quot;</span><span class="w">
@@ -90,75 +90,25 @@
   </span><span class="kn">import</span><span class="w"> </span><span class="nc">PurpleWeb.BoardLive.Helpers</span><span class="w">
   </span><span class="kn">use</span><span class="w"> </span><span class="nc">PurpleWeb</span><span class="p">,</span><span class="w"> </span><span class="ss">:live_view</span><span class="w">
 
-  </span><span class="kd">def</span><span class="w"> </span><span class="nf">apply_action</span><span class="p" data-group-id="9132451584-2">(</span><span class="n">socket</span><span class="p">,</span><span class="w"> </span><span class="ss">:index</span><span class="p">,</span><span class="w"> </span><span class="bp">_</span><span class="p" data-group-id="9132451584-2">)</span><span class="w"> </span><span class="k" data-group-id="9132451584-3">do</span><span class="w">
-    </span><span class="n">assign</span><span class="p" data-group-id="9132451584-4">(</span><span class="n">socket</span><span class="p">,</span><span class="w"> </span><span class="ss">:editable_board</span><span class="p">,</span><span class="w"> </span><span class="no">nil</span><span class="p" data-group-id="9132451584-4">)</span><span class="w">
-  </span><span class="k" data-group-id="9132451584-3">end</span><span class="w">
-
-  </span><span class="kd">def</span><span class="w"> </span><span class="nf">apply_action</span><span class="p" data-group-id="9132451584-5">(</span><span class="n">socket</span><span class="p">,</span><span class="w"> </span><span class="ss">:edit</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="9132451584-6">%{</span><span class="s">&quot;id&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="n">id</span><span class="p" data-group-id="9132451584-6">}</span><span class="p" data-group-id="9132451584-5">)</span><span class="w"> </span><span class="k" data-group-id="9132451584-7">do</span><span class="w">
-    </span><span class="n">assign</span><span class="p" data-group-id="9132451584-8">(</span><span class="n">socket</span><span class="p">,</span><span class="w"> </span><span class="ss">:editable_board</span><span class="p">,</span><span class="w"> </span><span class="nc">Board</span><span class="o">.</span><span class="n">get_user_board!</span><span class="p" data-group-id="9132451584-9">(</span><span class="n">id</span><span class="p" data-group-id="9132451584-9">)</span><span class="p" data-group-id="9132451584-8">)</span><span class="w">
-  </span><span class="k" data-group-id="9132451584-7">end</span><span class="w">
-
-  </span><span class="kd">def</span><span class="w"> </span><span class="nf">apply_action</span><span class="p" data-group-id="9132451584-10">(</span><span class="n">socket</span><span class="p">,</span><span class="w"> </span><span class="ss">:create</span><span class="p">,</span><span class="w"> </span><span class="bp">_</span><span class="p" data-group-id="9132451584-10">)</span><span class="w"> </span><span class="k" data-group-id="9132451584-11">do</span><span class="w">
-    </span><span class="n">new_board</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p" data-group-id="9132451584-12">%</span><span class="nc" data-group-id="9132451584-12">Board.UserBoard</span><span class="p" data-group-id="9132451584-12">{</span><span class="ss">tags</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="9132451584-13">[</span><span class="p" data-group-id="9132451584-13">]</span><span class="p" data-group-id="9132451584-12">}</span><span class="w">
-
-    </span><span class="n">socket</span><span class="w">
-    </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">assign</span><span class="p" data-group-id="9132451584-14">(</span><span class="ss">:editable_board</span><span class="p">,</span><span class="w"> </span><span class="n">new_board</span><span class="p" data-group-id="9132451584-14">)</span><span class="w">
-    </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">assign</span><span class="p" data-group-id="9132451584-15">(</span><span class="ss">:user_boards</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="9132451584-16">[</span><span class="n">new_board</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">socket</span><span class="o">.</span><span class="n">assigns</span><span class="o">.</span><span class="n">user_boards</span><span class="p" data-group-id="9132451584-16">]</span><span class="p" data-group-id="9132451584-15">)</span><span class="w">
-  </span><span class="k" data-group-id="9132451584-11">end</span><span class="w">
-
-  </span><span class="kd">defp</span><span class="w"> </span><span class="nf">assign_data</span><span class="p" data-group-id="9132451584-17">(</span><span class="n">socket</span><span class="p" data-group-id="9132451584-17">)</span><span class="w"> </span><span class="k" data-group-id="9132451584-18">do</span><span class="w">
-    </span><span class="n">user_boards</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Board</span><span class="o">.</span><span class="n">list_user_boards</span><span class="p" data-group-id="9132451584-19">(</span><span class="n">socket</span><span class="o">.</span><span class="n">assigns</span><span class="o">.</span><span class="n">current_user</span><span class="o">.</span><span class="n">id</span><span class="p" data-group-id="9132451584-19">)</span><span class="w">
-
-    </span><span class="n">socket</span><span class="w">
-    </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">assign</span><span class="p" data-group-id="9132451584-20">(</span><span class="ss">:page_title</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Boards&quot;</span><span class="p" data-group-id="9132451584-20">)</span><span class="w">
-    </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">assign</span><span class="p" data-group-id="9132451584-21">(</span><span class="ss">:user_boards</span><span class="p">,</span><span class="w"> </span><span class="n">user_boards</span><span class="p" data-group-id="9132451584-21">)</span><span class="w">
-  </span><span class="k" data-group-id="9132451584-18">end</span><span class="w">
+  </span><span class="na">@impl</span><span class="w"> </span><span class="nc">Phoenix.LiveView</span><span class="w">
+  </span><span class="kd">def</span><span class="w"> </span><span class="nf">mount</span><span class="p" data-group-id="6426878961-2">(</span><span class="bp">_</span><span class="p">,</span><span class="w"> </span><span class="bp">_</span><span class="p">,</span><span class="w"> </span><span class="n">socket</span><span class="p" data-group-id="6426878961-2">)</span><span class="w"> </span><span class="k" data-group-id="6426878961-3">do</span><span class="w">
+    </span><span class="p" data-group-id="6426878961-4">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="n">assign_side_nav</span><span class="p" data-group-id="6426878961-5">(</span><span class="n">socket</span><span class="p" data-group-id="6426878961-5">)</span><span class="p" data-group-id="6426878961-4">}</span><span class="w">
+  </span><span class="k" data-group-id="6426878961-3">end</span><span class="w">
 
   </span><span class="na">@impl</span><span class="w"> </span><span class="nc">Phoenix.LiveView</span><span class="w">
-  </span><span class="kd">def</span><span class="w"> </span><span class="nf">mount</span><span class="p" data-group-id="9132451584-22">(</span><span class="bp">_</span><span class="p">,</span><span class="w"> </span><span class="bp">_</span><span class="p">,</span><span class="w"> </span><span class="n">socket</span><span class="p" data-group-id="9132451584-22">)</span><span class="w"> </span><span class="k" data-group-id="9132451584-23">do</span><span class="w">
-    </span><span class="p" data-group-id="9132451584-24">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="n">assign_side_nav</span><span class="p" data-group-id="9132451584-25">(</span><span class="n">socket</span><span class="p" data-group-id="9132451584-25">)</span><span class="p" data-group-id="9132451584-24">}</span><span class="w">
-  </span><span class="k" data-group-id="9132451584-23">end</span><span class="w">
+  </span><span class="kd">def</span><span class="w"> </span><span class="nf">handle_event</span><span class="p" data-group-id="6426878961-6">(</span><span class="s">&quot;delete&quot;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="6426878961-7">%{</span><span class="s">&quot;id&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="n">id</span><span class="p" data-group-id="6426878961-7">}</span><span class="p">,</span><span class="w"> </span><span class="n">socket</span><span class="p" data-group-id="6426878961-6">)</span><span class="w"> </span><span class="k" data-group-id="6426878961-8">do</span><span class="w">
+    </span><span class="nc">Board</span><span class="o">.</span><span class="n">delete_user_board!</span><span class="p" data-group-id="6426878961-9">(</span><span class="n">id</span><span class="p" data-group-id="6426878961-9">)</span><span class="w">
+
+    </span><span class="p" data-group-id="6426878961-10">{</span><span class="ss">:noreply</span><span class="p">,</span><span class="w"> </span><span class="n">put_flash</span><span class="p" data-group-id="6426878961-11">(</span><span class="n">socket</span><span class="p">,</span><span class="w"> </span><span class="ss">:info</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Deleted board&quot;</span><span class="p" data-group-id="6426878961-11">)</span><span class="p" data-group-id="6426878961-10">}</span><span class="w">
+  </span><span class="k" data-group-id="6426878961-8">end</span><span class="w">
 
   </span><span class="na">@impl</span><span class="w"> </span><span class="nc">Phoenix.LiveView</span><span class="w">
-  </span><span class="kd">def</span><span class="w"> </span><span class="nf">handle_params</span><span class="p" data-group-id="9132451584-26">(</span><span class="n">params</span><span class="p">,</span><span class="w"> </span><span class="bp">_</span><span class="p">,</span><span class="w"> </span><span class="n">socket</span><span class="p" data-group-id="9132451584-26">)</span><span class="w"> </span><span class="k" data-group-id="9132451584-27">do</span><span class="w">
-    </span><span class="p" data-group-id="9132451584-28">{</span><span class="w">
-      </span><span class="ss">:noreply</span><span class="p">,</span><span class="w">
-      </span><span class="n">socket</span><span class="w">
-      </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">assign_data</span><span class="p" data-group-id="9132451584-29">(</span><span class="p" data-group-id="9132451584-29">)</span><span class="w">
-      </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">apply_action</span><span class="p" data-group-id="9132451584-30">(</span><span class="n">socket</span><span class="o">.</span><span class="n">assigns</span><span class="o">.</span><span class="n">live_action</span><span class="p">,</span><span class="w"> </span><span class="n">params</span><span class="p" data-group-id="9132451584-30">)</span><span class="w">
-    </span><span class="p" data-group-id="9132451584-28">}</span><span class="w">
-  </span><span class="k" data-group-id="9132451584-27">end</span><span class="w">
-
-  </span><span class="na">@impl</span><span class="w"> </span><span class="nc">Phoenix.LiveView</span><span class="w">
-  </span><span class="kd">def</span><span class="w"> </span><span class="nf">handle_event</span><span class="p" data-group-id="9132451584-31">(</span><span class="s">&quot;delete&quot;</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="9132451584-32">%{</span><span class="s">&quot;id&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="n">id</span><span class="p" data-group-id="9132451584-32">}</span><span class="p">,</span><span class="w"> </span><span class="n">socket</span><span class="p" data-group-id="9132451584-31">)</span><span class="w"> </span><span class="k" data-group-id="9132451584-33">do</span><span class="w">
-    </span><span class="nc">Board</span><span class="o">.</span><span class="n">delete_user_board!</span><span class="p" data-group-id="9132451584-34">(</span><span class="n">id</span><span class="p" data-group-id="9132451584-34">)</span><span class="w">
-
-    </span><span class="p" data-group-id="9132451584-35">{</span><span class="w">
-      </span><span class="ss">:noreply</span><span class="p">,</span><span class="w">
-      </span><span class="n">socket</span><span class="w">
-      </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">assign_data</span><span class="p" data-group-id="9132451584-36">(</span><span class="p" data-group-id="9132451584-36">)</span><span class="w">
-      </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">assign_side_nav</span><span class="p" data-group-id="9132451584-37">(</span><span class="p" data-group-id="9132451584-37">)</span><span class="w">
-      </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">put_flash</span><span class="p" data-group-id="9132451584-38">(</span><span class="ss">:info</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Deleted board&quot;</span><span class="p" data-group-id="9132451584-38">)</span><span class="w">
-    </span><span class="p" data-group-id="9132451584-35">}</span><span class="w">
-  </span><span class="k" data-group-id="9132451584-33">end</span><span class="w">
-
-  </span><span class="na">@impl</span><span class="w"> </span><span class="nc">Phoenix.LiveView</span><span class="w">
-  </span><span class="kd">def</span><span class="w"> </span><span class="nf">handle_info</span><span class="p" data-group-id="9132451584-39">(</span><span class="p" data-group-id="9132451584-40">{</span><span class="ss">:saved_board</span><span class="p">,</span><span class="w"> </span><span class="c">_id</span><span class="p" data-group-id="9132451584-40">}</span><span class="p">,</span><span class="w"> </span><span class="n">socket</span><span class="p" data-group-id="9132451584-39">)</span><span class="w"> </span><span class="k" data-group-id="9132451584-41">do</span><span class="w">
-    </span><span class="p" data-group-id="9132451584-42">{</span><span class="w">
-      </span><span class="ss">:noreply</span><span class="p">,</span><span class="w">
-      </span><span class="n">socket</span><span class="w">
-      </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">push_patch</span><span class="p" data-group-id="9132451584-43">(</span><span class="ss">to</span><span class="p">:</span><span class="w"> </span><span class="sx">~p&quot;/board&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">replace</span><span class="p">:</span><span class="w"> </span><span class="no">true</span><span class="p" data-group-id="9132451584-43">)</span><span class="w">
-      </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">put_flash</span><span class="p" data-group-id="9132451584-44">(</span><span class="ss">:info</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Board saved&quot;</span><span class="p" data-group-id="9132451584-44">)</span><span class="w">
-    </span><span class="p" data-group-id="9132451584-42">}</span><span class="w">
-  </span><span class="k" data-group-id="9132451584-41">end</span><span class="w">
-
-  </span><span class="na">@impl</span><span class="w"> </span><span class="nc">Phoenix.LiveView</span><span class="w">
-  </span><span class="kd">def</span><span class="w"> </span><span class="nf">render</span><span class="p" data-group-id="9132451584-45">(</span><span class="n">assigns</span><span class="p" data-group-id="9132451584-45">)</span><span class="w"> </span><span class="k" data-group-id="9132451584-46">do</span><span class="w">
+  </span><span class="kd">def</span><span class="w"> </span><span class="nf">render</span><span class="p" data-group-id="6426878961-12">(</span><span class="n">assigns</span><span class="p" data-group-id="6426878961-12">)</span><span class="w"> </span><span class="k" data-group-id="6426878961-13">do</span><span class="w">
     </span><span class="sx">~H&quot;&quot;&quot;
     &lt;h1 class=&quot;mb-2&quot;&gt;
       &lt;%= @page_title %&gt;
       &lt;.link navigate={~p&quot;/board/new&quot;}&gt;
-        ➕
+        New
       &lt;/.link&gt;
     &lt;/h1&gt;
     &lt;div class=&quot;mb-2&quot;&gt;&lt;/div&gt;
@@ -210,8 +160,8 @@
       &lt;/.section&gt;
     &lt;/div&gt;
     &quot;&quot;&quot;</span><span class="w">
-  </span><span class="k" data-group-id="9132451584-46">end</span><span class="w">
-</span><span class="k" data-group-id="9132451584-1">end</span><span class="w">
+  </span><span class="k" data-group-id="6426878961-13">end</span><span class="w">
+</span><span class="k" data-group-id="6426878961-1">end</span><span class="w">
 </span></code></pre>
   </body>
   </html>

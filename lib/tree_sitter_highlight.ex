@@ -59,6 +59,12 @@ defmodule TreeSitterHighlight do
            File.write(output_path, ~s"""
              <!DOCTYPE html>
              <style>
+             html {
+                font-size: 13px;
+             }
+             html, body, pre {
+                margin: 0;
+             }
              #{css_content}
              </style>
              <html>
