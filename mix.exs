@@ -4,10 +4,15 @@ defmodule ExTreeSitterHighlight.MixProject do
   def project do
     [
       app: :ex_tree_sitter_highlight,
-      version: "0.1.0",
+      deps: deps(),
+      description:
+        "Renders source code into highlighted html via a NIF binding to the rust tree-sitter-highlight crate",
       elixir: "~> 1.15",
+      name: "Elixir Tree Sitter Highlight",
+      package: package(),
+      source_url: "https://github.com/knoebber/ex_tree_sitter_highlight",
       start_permanent: Mix.env() == :prod,
-      deps: deps()
+      version: "0.1.0"
     ]
   end
 
@@ -24,6 +29,27 @@ defmodule ExTreeSitterHighlight.MixProject do
       {:rustler, "~> 0.31.0", runtime: false},
       {:makeup, "~> 1.1.1", only: [:test]},
       {:makeup_elixir, "~> 0.14.0", only: [:test]}
+    ]
+  end
+
+  defp package() do
+    [
+      files: [
+        "lib",
+        "priv",
+        ".formatter.exs",
+        "mix.exs",
+        "README.md",
+        "LICENSE",
+        "src",
+        "native/treesitterhighlight/.cargo",
+        "native/treesitterhighlight/src",
+        "native/treesitterhighlight/cargo.lock",
+        "native/treesitterhighlight/cargo.toml",
+        "native/treesitterhighlight/README.md"
+      ],
+      licenses: ["MIT"],
+      links: %{"GitHub" => "https://github.com/knoebber/ex_tree_sitter_highlight"}
     ]
   end
 end

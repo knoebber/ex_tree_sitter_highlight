@@ -1,4 +1,4 @@
-# ExTreeSitterHighlight
+# Elixir Tree Sitter Highlight
 
 Elixir nif binding for
 [tree_sitter_higlight](https://docs.rs/tree-sitter-highlight/latest/tree_sitter_highlight/).
