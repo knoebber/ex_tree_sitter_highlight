@@ -79,7 +79,6 @@ static ELIXIR_CONFIG: Lazy<HighlightConfiguration> = Lazy::new(|| {
     )
     .unwrap();
     c.configure(&HIGHLIGHT_NAMES);
-    println!("configured elixir");
     c
 });
 

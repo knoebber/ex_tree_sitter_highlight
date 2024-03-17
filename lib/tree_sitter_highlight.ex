@@ -42,7 +42,7 @@ defmodule TreeSitterHighlight do
   See priv/default.css for an example of how to create your own stylesheet.
   """
   def get_default_css_content() do
-    default_stylesheet() |> File.read()
+    default_stylesheet() |> File.read!()
   end
 
   @doc ~S"""
