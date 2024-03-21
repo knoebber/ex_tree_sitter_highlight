@@ -51,12 +51,12 @@ defmodule TreeSitterHighlight do
 
   ## Example
 
-  iex> TreeSitterHighlight.write_highlighted_file(
-  ...> "lib/tree_sitter_highlight.ex",
-  ...> "example_output/ex_tree_sitter_highlight/tree_sitter_highlight.html",
-  ...> "<style>#{TreeSitterHighlight.get_default_css_content()}</style>"
-  ...> )
-  :ok
+      iex> TreeSitterHighlight.write_highlighted_file(
+      ...> "lib/tree_sitter_highlight.ex",
+      ...> "example_output/ex_tree_sitter_highlight/tree_sitter_highlight.html",
+      ...> "<style>#{TreeSitterHighlight.get_default_css_content()}</style>"
+      ...> )
+      :ok
   """
   def write_highlighted_file(input_path, output_path, head_content)
       when is_binary(input_path) and is_binary(output_path) and is_binary(head_content) do
