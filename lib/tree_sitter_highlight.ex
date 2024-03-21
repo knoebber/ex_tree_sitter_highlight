@@ -35,42 +35,38 @@ defmodule TreeSitterHighlight do
   """
   def get_language_from_filename(_filename), do: :erlang.nif_error(:nif_not_loaded)
 
-  defp default_stylesheet(), do: "priv/default.css"
-
   @doc ~S"""
   Returns CSS content with classes for highlighting and formatting html output.
   See priv/default.css for an example of how to create your own stylesheet.
+  This stylesheet contains both a light and dark color scheme.
+  To toggle the dark scheme set data-theme="dark" on the root <html> element.
   """
   def get_default_css_content() do
-    default_stylesheet() |> File.read!()
+    File.read!("priv/default.css")
   end
 
   @doc ~S"""
   Writes a complete html document with highlighted code within.
-  Uses the default stylesheet unless other css_content is provided.
+  head_content should contain a stylesheet.
+  iex> TreeSitterHighlight.write_highlighted_file(
+  ...> "lib/tree_sitter_highlight.ex",
+  ...> "example_output/ex_tree_sitter_highlight/tree_sitter_highlight.html",
+  ...> "<style>#{TreeSitterHighlight.get_default_css_content()}</style>"
+  ...> )
+  :ok
   """
-  def write_highlighted_file(input_path, output_path, css_content \\ nil)
-      when is_binary(input_path) and is_binary(output_path) do
+  def write_highlighted_file(input_path, output_path, head_content)
+      when is_binary(input_path) and is_binary(output_path) and is_binary(head_content) do
     with {:ok, source_code} <- File.read(input_path),
-         {:ok, css_content} <- css_content || get_default_css_content(),
          {:ok, html} <-
            __MODULE__.render_html(source_code, get_language_from_filename(input_path)),
          :ok <-
            File.write(output_path, ~s"""
              <!DOCTYPE html>
-             <style>
-             html {
-                font-size: 13px;
-             }
-             html, body, pre {
-                margin: 0;
-             }
-             pre {
-                width: fit-content;
-             }
-             #{css_content}
-             </style>
              <html>
+             <head>
+             #{head_content}
+             </head>
              <body>
              #{html}
              </body>

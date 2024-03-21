@@ -12,7 +12,7 @@ defmodule ExTreeSitterHighlight.MixProject do
       package: package(),
       source_url: "https://github.com/knoebber/ex_tree_sitter_highlight",
       start_permanent: Mix.env() == :prod,
-      version: "0.1.0"
+      version: "0.2.0"
     ]
   end
 

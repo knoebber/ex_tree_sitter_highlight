@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html>
+<body>
+<style>
+html {
+   font-size: 13px;
+}
+html, body, pre {
+   margin: 0;
+}
+pre {
+    width: fit-content;
+    min-width: 100vw;
+}
+.hidden-line-numbers .line-number {
+  display: none;
+}
+.ui {
+  display:flex;
+  font-size: 14px;
+  gap: 8px;
+  padding: 8px;
+}
+:root {
+    --code-block-background-color: #f5f5f5;
+    --code-default-color: black;
+    --token-attribute-color: rgb(91, 121, 227);
+    --token-builtin-color: rgb(102, 159, 89);
+    --token-comment-color: rgb(165, 166, 170);
+    --token-constant-color: rgb(121, 161, 103);
+    --token-function-color: rgb(91, 121, 227);
+    --token-keyword-color: rgb(164, 73, 171);
+    --token-module-color: rgb(56, 130, 183);
+    --token-number-color: rgb(173, 110, 37);
+    --token-operator-color: rgb(91, 121, 227);
+    --token-property-color: rgb(73, 110, 38);
+    --token-special-string-color: rgb(173, 110, 38);
+    --token-string-color: rgb(100, 159, 88);
+    --token-tag-color: rgb(164, 73, 171);
+    --token-builtin-variable-color: rgb(173, 110, 37);
+    --line-number-color: rgba(27, 31, 35, 0.3);
+}
+
+:root[data-theme="dark"] {
+    --code-block-background-color: rgb(40, 44, 51);
+    --code-default-color: rgb(172, 178, 190);
+    --token-attribute-color: rgb(173, 110, 37);
+    --token-builtin-color: rgb(223, 193, 132);
+    --token-comment-color: rgb(135, 142, 152);
+    --token-constant-color: rgb(115, 173, 233);
+    --token-function-color: rgb(115, 173, 233);
+    --token-keyword-color: rgb(180, 119, 207);
+    --token-module-color: rgb(180, 119, 207);
+    --token-number-color: rgb(172, 178, 190);
+    --token-operator-color: rgb(105, 169, 180);
+    --token-property-color: rgb(105, 169, 180);
+    --token-special-string-color: rgb(191, 149, 106);
+    --token-string-color: rgb(152, 181, 123);
+    --token-tag-color: rgb(115, 173, 233);
+    --token-builtin-variable-color: rgb(115, 173, 233);
+    --line-number-color: rgba(77, 81, 88);
+}
+
+.code-block code {
+    font-family:
+        Roboto Mono,
+        monospace;
+    display: grid;
+    line-height: 1.5;
+    color: var(--code-default-color);
+    background-color: var(--code-block-background-color);
+}
+
+.line-number {
+    user-select: none;
+    text-align: right;
+    padding: 0 10px;
+    color: var(--line-number-color);
+}
+
+.token.attribute {
+    color: var(--token-attribute-color);
+}
+.token.builtin {
+    color: var(--token-builtin-color);
+}
+.token.constant {
+    color: var(--token-constant-color);
+}
+.token.comment {
+    color: var(--token-comment-color);
+}
+.token.comment .string {
+    color: var(--token-comment-color);
+}
+.token.function {
+    color: var(--token-function-color);
+}
+.token.keyword {
+    color: var(--token-keyword-color);
+}
+.token.module {
+    color: var(--token-module-color);
+}
+.token.number {
+    color: var(--token-number-color);
+}
+.token.operator {
+    color: var(--token-operator-color);
+}
+.token.property {
+    color: var(--token-property-color);
+}
+.token.string {
+    color: var(--token-string-color);
+}
+.token.string.special {
+    color: var(--token-special-string-color);
+}
+.token.tag {
+    color: var(--token-tag-color);
+}
+.token.variable.builtin {
+    color: var(--token-builtin-variable-color);
+}
+
+</style>
+
+<div class="ui" >
+  <label>Toggle dark<input type="checkbox" id="themeToggle"></label>
+  <label>Hide line numbers<input type="checkbox" id="lineNumToggle"></label>
+</div>
+
+<pre class="code-block language-html"><code>
+<div class="line-wrapper"><span class="line-number">1</span><span class="token constant">&lt;!DOCTYPE html<span class="token punctuation bracket">&gt;</span></span>
+</div>
+<div class="line-wrapper"><span class="line-number">2</span><span class="token punctuation bracket">&lt;</span><span class="token tag">html</span><span class="token punctuation bracket">&gt;</span>
+</div>
+<div class="line-wrapper"><span class="line-number">3</span><span class="token punctuation bracket">&lt;</span><span class="token tag">body</span><span class="token punctuation bracket">&gt;</span>
+</div>
+<div class="line-wrapper"><span class="line-number">4</span><span class="token punctuation bracket">&lt;</span><span class="token tag">div</span> <span class="token attribute">class</span>=&quot;<span class="token string">ui</span>&quot; <span class="token punctuation bracket">&gt;</span>
+</div>
+<div class="line-wrapper"><span class="line-number">5</span>  <span class="token punctuation bracket">&lt;</span><span class="token tag">label</span><span class="token punctuation bracket">&gt;</span>Toggle dark<span class="token punctuation bracket">&lt;</span><span class="token tag">input</span> <span class="token attribute">type</span>=&quot;<span class="token string">checkbox</span>&quot; <span class="token attribute">id</span>=&quot;<span class="token string">themeToggle</span>&quot;<span class="token punctuation bracket">&gt;</span><span class="token punctuation bracket">&lt;/</span><span class="token tag">label</span><span class="token punctuation bracket">&gt;</span>
+</div>
+<div class="line-wrapper"><span class="line-number">6</span>  <span class="token punctuation bracket">&lt;</span><span class="token tag">label</span><span class="token punctuation bracket">&gt;</span>Hide line numbers<span class="token punctuation bracket">&lt;</span><span class="token tag">input</span> <span class="token attribute">type</span>=&quot;<span class="token string">checkbox</span>&quot; <span class="token attribute">id</span>=&quot;<span class="token string">lineNumToggle</span>&quot;<span class="token punctuation bracket">&gt;</span><span class="token punctuation bracket">&lt;/</span><span class="token tag">label</span><span class="token punctuation bracket">&gt;</span>
+</div>
+<div class="line-wrapper"><span class="line-number">7</span><span class="token punctuation bracket">&lt;/</span><span class="token tag">div</span><span class="token punctuation bracket">&gt;</span>
+</div>
+<div class="line-wrapper"><span class="line-number">8</span>
+</div>
+<div class="line-wrapper"><span class="line-number">9</span><span class="token punctuation bracket">&lt;</span><span class="token tag">script</span><span class="token punctuation bracket">&gt;</span>
+</div>
+<div class="line-wrapper"><span class="line-number">10</span>themeToggle<span class="token punctuation delimiter">.</span><span class="token function">addEventListener</span><span class="token punctuation bracket">(</span><span class="token string">&#39;change&#39;</span><span class="token punctuation delimiter">,</span> <span class="token punctuation bracket">(</span><span class="token punctuation bracket">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation bracket">{</span>
+</div>
+<div class="line-wrapper"><span class="line-number">11</span>  <span class="token keyword">const</span> h <span class="token operator">=</span> <span class="token variable builtin">document</span><span class="token punctuation delimiter">.</span><span class="token function">querySelectorAll</span><span class="token punctuation bracket">(</span><span class="token string">&#39;html&#39;</span><span class="token punctuation bracket">)</span><span class="token punctuation bracket">[</span><span class="token number">0</span><span class="token punctuation bracket">]</span><span class="token punctuation delimiter">;</span>
+</div>
+<div class="line-wrapper"><span class="line-number">12</span>  h<span class="token punctuation delimiter">.</span><span class="token property">dataset</span><span class="token punctuation delimiter">.</span><span class="token property">theme</span> <span class="token operator">=</span> <span class="token operator">!</span>h<span class="token punctuation delimiter">.</span><span class="token property">dataset</span><span class="token punctuation delimiter">.</span><span class="token property">theme</span> ? <span class="token string">&#39;dark&#39;</span> : <span class="token string">&#39;&#39;</span><span class="token punctuation delimiter">;</span>
+</div>
+<div class="line-wrapper"><span class="line-number">13</span><span class="token punctuation bracket">}</span><span class="token punctuation bracket">)</span><span class="token punctuation delimiter">;</span>
+</div>
+<div class="line-wrapper"><span class="line-number">14</span>
+</div>
+<div class="line-wrapper"><span class="line-number">15</span>lineNumToggle<span class="token punctuation delimiter">.</span><span class="token function">addEventListener</span><span class="token punctuation bracket">(</span><span class="token string">&#39;change&#39;</span><span class="token punctuation delimiter">,</span> <span class="token punctuation bracket">(</span><span class="token punctuation bracket">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation bracket">{</span>
+</div>
+<div class="line-wrapper"><span class="line-number">16</span>  <span class="token keyword">const</span> code <span class="token operator">=</span> <span class="token variable builtin">document</span><span class="token punctuation delimiter">.</span><span class="token function">querySelectorAll</span><span class="token punctuation bracket">(</span><span class="token string">&#39;code&#39;</span><span class="token punctuation bracket">)</span><span class="token punctuation bracket">[</span><span class="token number">0</span><span class="token punctuation bracket">]</span><span class="token punctuation delimiter">;</span>
+</div>
+<div class="line-wrapper"><span class="line-number">17</span>  <span class="token keyword">const</span> cName <span class="token operator">=</span> <span class="token string">&#39;hidden-line-numbers&#39;</span>
+</div>
+<div class="line-wrapper"><span class="line-number">18</span>  <span class="token keyword">if</span> <span class="token punctuation bracket">(</span>code<span class="token punctuation delimiter">.</span><span class="token property">classList</span><span class="token punctuation delimiter">.</span><span class="token function">contains</span><span class="token punctuation bracket">(</span>cName<span class="token punctuation bracket">)</span><span class="token punctuation bracket">)</span> <span class="token punctuation bracket">{</span>
+</div>
+<div class="line-wrapper"><span class="line-number">19</span>     code<span class="token punctuation delimiter">.</span><span class="token property">classList</span><span class="token punctuation delimiter">.</span><span class="token function">remove</span><span class="token punctuation bracket">(</span>cName<span class="token punctuation bracket">)</span><span class="token punctuation delimiter">;</span>
+</div>
+<div class="line-wrapper"><span class="line-number">20</span>  <span class="token punctuation bracket">}</span> <span class="token keyword">else</span> <span class="token punctuation bracket">{</span>
+</div>
+<div class="line-wrapper"><span class="line-number">21</span>     code<span class="token punctuation delimiter">.</span><span class="token property">classList</span><span class="token punctuation delimiter">.</span><span class="token function">add</span><span class="token punctuation bracket">(</span>cName<span class="token punctuation bracket">)</span><span class="token punctuation delimiter">;</span>
+</div>
+<div class="line-wrapper"><span class="line-number">22</span>  <span class="token punctuation bracket">}</span>
+</div>
+<div class="line-wrapper"><span class="line-number">23</span><span class="token punctuation bracket">}</span><span class="token punctuation bracket">)</span><span class="token punctuation delimiter">;</span>
+</div>
+<div class="line-wrapper"><span class="line-number">24</span><span class="token punctuation bracket">&lt;/</span><span class="token tag">script</span><span class="token punctuation bracket">&gt;</span>
+</div>
+<div class="line-wrapper"><span class="line-number">25</span>
+</div>
+<div class="line-wrapper"><span class="line-number">26</span><span class="token punctuation bracket">&lt;</span><span class="token tag">style</span><span class="token punctuation bracket">&gt;</span>
+</div>
+<div class="line-wrapper"><span class="line-number">27</span><span class="token tag">html</span> {
+</div>
+<div class="line-wrapper"><span class="line-number">28</span>   <span class="token property">font-size</span><span class="token punctuation delimiter">:</span> <span class="token number">13<span class="token type">px</span></span>;
+</div>
+<div class="line-wrapper"><span class="line-number">29</span>}
+</div>
+<div class="line-wrapper"><span class="line-number">30</span><span class="token tag">html</span><span class="token punctuation delimiter">,</span> <span class="token tag">body</span><span class="token punctuation delimiter">,</span> <span class="token tag">pre</span> {
+</div>
+<div class="line-wrapper"><span class="line-number">31</span>   <span class="token property">margin</span><span class="token punctuation delimiter">:</span> <span class="token number">0</span>;
+</div>
+<div class="line-wrapper"><span class="line-number">32</span>}
+</div>
+<div class="line-wrapper"><span class="line-number">33</span><span class="token tag">pre</span> {
+</div>
+<div class="line-wrapper"><span class="line-number">34</span>    <span class="token property">width</span><span class="token punctuation delimiter">:</span> fit-content;
+</div>
+<div class="line-wrapper"><span class="line-number">35</span>    <span class="token property">min-width</span><span class="token punctuation delimiter">:</span> <span class="token number">100<span class="token type">vw</span></span>;
+</div>
+<div class="line-wrapper"><span class="line-number">36</span>}
+</div>
+<div class="line-wrapper"><span class="line-number">37</span>.<span class="token property">hidden-line-numbers</span> .<span class="token property">line-number</span> {
+</div>
+<div class="line-wrapper"><span class="line-number">38</span>  <span class="token property">display</span><span class="token punctuation delimiter">:</span> none;
+</div>
+<div class="line-wrapper"><span class="line-number">39</span>}
+</div>
+<div class="line-wrapper"><span class="line-number">40</span>.<span class="token property">ui</span> {
+</div>
+<div class="line-wrapper"><span class="line-number">41</span>  <span class="token property">display</span><span class="token punctuation delimiter">:</span>flex;
+</div>
+<div class="line-wrapper"><span class="line-number">42</span>  <span class="token property">font-size</span><span class="token punctuation delimiter">:</span> <span class="token number">14<span class="token type">px</span></span>;
+</div>
+<div class="line-wrapper"><span class="line-number">43</span>  <span class="token property">gap</span><span class="token punctuation delimiter">:</span> <span class="token number">8<span class="token type">px</span></span>;
+</div>
+<div class="line-wrapper"><span class="line-number">44</span>  <span class="token property">padding</span><span class="token punctuation delimiter">:</span> <span class="token number">8<span class="token type">px</span></span>;
+</div>
+<div class="line-wrapper"><span class="line-number">45</span>}
+</div>
+<div class="line-wrapper"><span class="line-number">46</span><span class="token punctuation delimiter">:</span><span class="token attribute">root</span> {
+</div>
+<div class="line-wrapper"><span class="line-number">47</span>    <span class="token property">--code-block-background-color</span><span class="token punctuation delimiter">:</span> <span class="token string special"><span class="token punctuation delimiter">#</span>f5f5f5</span>;
+</div>
+<div class="line-wrapper"><span class="line-number">48</span>    <span class="token property">--code-default-color</span><span class="token punctuation delimiter">:</span> black;
+</div>
+<div class="line-wrapper"><span class="line-number">49</span>    <span class="token property">--token-attribute-color</span><span class="token punctuation delimiter">:</span> <span class="token function">rgb</span>(<span class="token number">91</span><span class="token punctuation delimiter">,</span> <span class="token number">121</span><span class="token punctuation delimiter">,</span> <span class="token number">227</span>);
+</div>
+<div class="line-wrapper"><span class="line-number">50</span>    <span class="token property">--token-builtin-color</span><span class="token punctuation delimiter">:</span> <span class="token function">rgb</span>(<span class="token number">102</span><span class="token punctuation delimiter">,</span> <span class="token number">159</span><span class="token punctuation delimiter">,</span> <span class="token number">89</span>);
+</div>
+<div class="line-wrapper"><span class="line-number">51</span>    <span class="token property">--token-comment-color</span><span class="token punctuation delimiter">:</span> <span class="token function">rgb</span>(<span class="token number">165</span><span class="token punctuation delimiter">,</span> <span class="token number">166</span><span class="token punctuation delimiter">,</span> <span class="token number">170</span>);
+</div>
+<div class="line-wrapper"><span class="line-number">52</span>    <span class="token property">--token-constant-color</span><span class="token punctuation delimiter">:</span> <span class="token function">rgb</span>(<span class="token number">121</span><span class="token punctuation delimiter">,</span> <span class="token number">161</span><span class="token punctuation delimiter">,</span> <span class="token number">103</span>);
+</div>
+<div class="line-wrapper"><span class="line-number">53</span>    <span class="token property">--token-function-color</span><span class="token punctuation delimiter">:</span> <span class="token function">rgb</span>(<span class="token number">91</span><span class="token punctuation delimiter">,</span> <span class="token number">121</span><span class="token punctuation delimiter">,</span> <span class="token number">227</span>);
+</div>
+<div class="line-wrapper"><span class="line-number">54</span>    <span class="token property">--token-keyword-color</span><span class="token punctuation delimiter">:</span> <span class="token function">rgb</span>(<span class="token number">164</span><span class="token punctuation delimiter">,</span> <span class="token number">73</span><span class="token punctuation delimiter">,</span> <span class="token number">171</span>);
+</div>
+<div class="line-wrapper"><span class="line-number">55</span>    <span class="token property">--token-module-color</span><span class="token punctuation delimiter">:</span> <span class="token function">rgb</span>(<span class="token number">56</span><span class="token punctuation delimiter">,</span> <span class="token number">130</span><span class="token punctuation delimiter">,</span> <span class="token number">183</span>);
+</div>
+<div class="line-wrapper"><span class="line-number">56</span>    <span class="token property">--token-number-color</span><span class="token punctuation delimiter">:</span> <span class="token function">rgb</span>(<span class="token number">173</span><span class="token punctuation delimiter">,</span> <span class="token number">110</span><span class="token punctuation delimiter">,</span> <span class="token number">37</span>);
+</div>
+<div class="line-wrapper"><span class="line-number">57</span>    <span class="token property">--token-operator-color</span><span class="token punctuation delimiter">:</span> <span class="token function">rgb</span>(<span class="token number">91</span><span class="token punctuation delimiter">,</span> <span class="token number">121</span><span class="token punctuation delimiter">,</span> <span class="token number">227</span>);
+</div>
+<div class="line-wrapper"><span class="line-number">58</span>    <span class="token property">--token-property-color</span><span class="token punctuation delimiter">:</span> <span class="token function">rgb</span>(<span class="token number">73</span><span class="token punctuation delimiter">,</span> <span class="token number">110</span><span class="token punctuation delimiter">,</span> <span class="token number">38</span>);
+</div>
+<div class="line-wrapper"><span class="line-number">59</span>    <span class="token property">--token-special-string-color</span><span class="token punctuation delimiter">:</span> <span class="token function">rgb</span>(<span class="token number">173</span><span class="token punctuation delimiter">,</span> <span class="token number">110</span><span class="token punctuation delimiter">,</span> <span class="token number">38</span>);
+</div>
+<div class="line-wrapper"><span class="line-number">60</span>    <span class="token property">--token-string-color</span><span class="token punctuation delimiter">:</span> <span class="token function">rgb</span>(<span class="token number">100</span><span class="token punctuation delimiter">,</span> <span class="token number">159</span><span class="token punctuation delimiter">,</span> <span class="token number">88</span>);
+</div>
+<div class="line-wrapper"><span class="line-number">61</span>    <span class="token property">--token-tag-color</span><span class="token punctuation delimiter">:</span> <span class="token function">rgb</span>(<span class="token number">164</span><span class="token punctuation delimiter">,</span> <span class="token number">73</span><span class="token punctuation delimiter">,</span> <span class="token number">171</span>);
+</div>
+<div class="line-wrapper"><span class="line-number">62</span>    <span class="token property">--token-builtin-variable-color</span><span class="token punctuation delimiter">:</span> <span class="token function">rgb</span>(<span class="token number">173</span><span class="token punctuation delimiter">,</span> <span class="token number">110</span><span class="token punctuation delimiter">,</span> <span class="token number">37</span>);
+</div>
+<div class="line-wrapper"><span class="line-number">63</span>    <span class="token property">--line-number-color</span><span class="token punctuation delimiter">:</span> <span class="token function">rgba</span>(<span class="token number">27</span><span class="token punctuation delimiter">,</span> <span class="token number">31</span><span class="token punctuation delimiter">,</span> <span class="token number">35</span><span class="token punctuation delimiter">,</span> <span class="token number">0.3</span>);
+</div>
+<div class="line-wrapper"><span class="line-number">64</span>}
+</div>
+<div class="line-wrapper"><span class="line-number">65</span>
+</div>
+<div class="line-wrapper"><span class="line-number">66</span><span class="token punctuation delimiter">:</span><span class="token attribute">root</span>[<span class="token attribute">data-theme</span><span class="token operator">=</span><span class="token string">&quot;dark&quot;</span>] {
+</div>
+<div class="line-wrapper"><span class="line-number">67</span>    <span class="token property">--code-block-background-color</span><span class="token punctuation delimiter">:</span> <span class="token function">rgb</span>(<span class="token number">40</span><span class="token punctuation delimiter">,</span> <span class="token number">44</span><span class="token punctuation delimiter">,</span> <span class="token number">51</span>);
+</div>
+<div class="line-wrapper"><span class="line-number">68</span>    <span class="token property">--code-default-color</span><span class="token punctuation delimiter">:</span> <span class="token function">rgb</span>(<span class="token number">172</span><span class="token punctuation delimiter">,</span> <span class="token number">178</span><span class="token punctuation delimiter">,</span> <span class="token number">190</span>);
+</div>
+<div class="line-wrapper"><span class="line-number">69</span>    <span class="token property">--token-attribute-color</span><span class="token punctuation delimiter">:</span> <span class="token function">rgb</span>(<span class="token number">173</span><span class="token punctuation delimiter">,</span> <span class="token number">110</span><span class="token punctuation delimiter">,</span> <span class="token number">37</span>);
+</div>
+<div class="line-wrapper"><span class="line-number">70</span>    <span class="token property">--token-builtin-color</span><span class="token punctuation delimiter">:</span> <span class="token function">rgb</span>(<span class="token number">223</span><span class="token punctuation delimiter">,</span> <span class="token number">193</span><span class="token punctuation delimiter">,</span> <span class="token number">132</span>);
+</div>
+<div class="line-wrapper"><span class="line-number">71</span>    <span class="token property">--token-comment-color</span><span class="token punctuation delimiter">:</span> <span class="token function">rgb</span>(<span class="token number">135</span><span class="token punctuation delimiter">,</span> <span class="token number">142</span><span class="token punctuation delimiter">,</span> <span class="token number">152</span>);
+</div>
+<div class="line-wrapper"><span class="line-number">72</span>    <span class="token property">--token-constant-color</span><span class="token punctuation delimiter">:</span> <span class="token function">rgb</span>(<span class="token number">115</span><span class="token punctuation delimiter">,</span> <span class="token number">173</span><span class="token punctuation delimiter">,</span> <span class="token number">233</span>);
+</div>
+<div class="line-wrapper"><span class="line-number">73</span>    <span class="token property">--token-function-color</span><span class="token punctuation delimiter">:</span> <span class="token function">rgb</span>(<span class="token number">115</span><span class="token punctuation delimiter">,</span> <span class="token number">173</span><span class="token punctuation delimiter">,</span> <span class="token number">233</span>);
+</div>
+<div class="line-wrapper"><span class="line-number">74</span>    <span class="token property">--token-keyword-color</span><span class="token punctuation delimiter">:</span> <span class="token function">rgb</span>(<span class="token number">180</span><span class="token punctuation delimiter">,</span> <span class="token number">119</span><span class="token punctuation delimiter">,</span> <span class="token number">207</span>);
+</div>
+<div class="line-wrapper"><span class="line-number">75</span>    <span class="token property">--token-module-color</span><span class="token punctuation delimiter">:</span> <span class="token function">rgb</span>(<span class="token number">180</span><span class="token punctuation delimiter">,</span> <span class="token number">119</span><span class="token punctuation delimiter">,</span> <span class="token number">207</span>);
+</div>
+<div class="line-wrapper"><span class="line-number">76</span>    <span class="token property">--token-number-color</span><span class="token punctuation delimiter">:</span> <span class="token function">rgb</span>(<span class="token number">172</span><span class="token punctuation delimiter">,</span> <span class="token number">178</span><span class="token punctuation delimiter">,</span> <span class="token number">190</span>);
+</div>
+<div class="line-wrapper"><span class="line-number">77</span>    <span class="token property">--token-operator-color</span><span class="token punctuation delimiter">:</span> <span class="token function">rgb</span>(<span class="token number">105</span><span class="token punctuation delimiter">,</span> <span class="token number">169</span><span class="token punctuation delimiter">,</span> <span class="token number">180</span>);
+</div>
+<div class="line-wrapper"><span class="line-number">78</span>    <span class="token property">--token-property-color</span><span class="token punctuation delimiter">:</span> <span class="token function">rgb</span>(<span class="token number">105</span><span class="token punctuation delimiter">,</span> <span class="token number">169</span><span class="token punctuation delimiter">,</span> <span class="token number">180</span>);
+</div>
+<div class="line-wrapper"><span class="line-number">79</span>    <span class="token property">--token-special-string-color</span><span class="token punctuation delimiter">:</span> <span class="token function">rgb</span>(<span class="token number">191</span><span class="token punctuation delimiter">,</span> <span class="token number">149</span><span class="token punctuation delimiter">,</span> <span class="token number">106</span>);
+</div>
+<div class="line-wrapper"><span class="line-number">80</span>    <span class="token property">--token-string-color</span><span class="token punctuation delimiter">:</span> <span class="token function">rgb</span>(<span class="token number">152</span><span class="token punctuation delimiter">,</span> <span class="token number">181</span><span class="token punctuation delimiter">,</span> <span class="token number">123</span>);
+</div>
+<div class="line-wrapper"><span class="line-number">81</span>    <span class="token property">--token-tag-color</span><span class="token punctuation delimiter">:</span> <span class="token function">rgb</span>(<span class="token number">115</span><span class="token punctuation delimiter">,</span> <span class="token number">173</span><span class="token punctuation delimiter">,</span> <span class="token number">233</span>);
+</div>
+<div class="line-wrapper"><span class="line-number">82</span>    <span class="token property">--token-builtin-variable-color</span><span class="token punctuation delimiter">:</span> <span class="token function">rgb</span>(<span class="token number">115</span><span class="token punctuation delimiter">,</span> <span class="token number">173</span><span class="token punctuation delimiter">,</span> <span class="token number">233</span>);
+</div>
+<div class="line-wrapper"><span class="line-number">83</span>    <span class="token property">--line-number-color</span><span class="token punctuation delimiter">:</span> <span class="token function">rgba</span>(<span class="token number">77</span><span class="token punctuation delimiter">,</span> <span class="token number">81</span><span class="token punctuation delimiter">,</span> <span class="token number">88</span>);
+</div>
+<div class="line-wrapper"><span class="line-number">84</span>}
+</div>
+<div class="line-wrapper"><span class="line-number">85</span>
+</div>
+<div class="line-wrapper"><span class="line-number">86</span>.<span class="token property">code-block</span> <span class="token tag">code</span> {
+</div>
+<div class="line-wrapper"><span class="line-number">87</span>    <span class="token property">font-family</span><span class="token punctuation delimiter">:</span>
+</div>
+<div class="line-wrapper"><span class="line-number">88</span>        Roboto Mono<span class="token punctuation delimiter">,</span>
+</div>
+<div class="line-wrapper"><span class="line-number">89</span>        monospace;
+</div>
+<div class="line-wrapper"><span class="line-number">90</span>    <span class="token property">display</span><span class="token punctuation delimiter">:</span> grid;
+</div>
+<div class="line-wrapper"><span class="line-number">91</span>    <span class="token property">line-height</span><span class="token punctuation delimiter">:</span> <span class="token number">1.5</span>;
+</div>
+<div class="line-wrapper"><span class="line-number">92</span>    <span class="token property">color</span><span class="token punctuation delimiter">:</span> <span class="token function">var</span>(--code-default-color);
+</div>
+<div class="line-wrapper"><span class="line-number">93</span>    <span class="token property">background-color</span><span class="token punctuation delimiter">:</span> <span class="token function">var</span>(--code-block-background-color);
+</div>
+<div class="line-wrapper"><span class="line-number">94</span>}
+</div>
+<div class="line-wrapper"><span class="line-number">95</span>
+</div>
+<div class="line-wrapper"><span class="line-number">96</span>.<span class="token property">line-number</span> {
+</div>
+<div class="line-wrapper"><span class="line-number">97</span>    <span class="token property">user-select</span><span class="token punctuation delimiter">:</span> none;
+</div>
+<div class="line-wrapper"><span class="line-number">98</span>    <span class="token property">text-align</span><span class="token punctuation delimiter">:</span> right;
+</div>
+<div class="line-wrapper"><span class="line-number">99</span>    <span class="token property">padding</span><span class="token punctuation delimiter">:</span> <span class="token number">0</span> <span class="token number">10<span class="token type">px</span></span>;
+</div>
+<div class="line-wrapper"><span class="line-number">100</span>    <span class="token property">color</span><span class="token punctuation delimiter">:</span> <span class="token function">var</span>(--line-number-color);
+</div>
+<div class="line-wrapper"><span class="line-number">101</span>}
+</div>
+<div class="line-wrapper"><span class="line-number">102</span>
+</div>
+<div class="line-wrapper"><span class="line-number">103</span>.<span class="token property">token</span>.<span class="token property">attribute</span> {
+</div>
+<div class="line-wrapper"><span class="line-number">104</span>    <span class="token property">color</span><span class="token punctuation delimiter">:</span> <span class="token function">var</span>(--token-attribute-color);
+</div>
+<div class="line-wrapper"><span class="line-number">105</span>}
+</div>
+<div class="line-wrapper"><span class="line-number">106</span>.<span class="token property">token</span>.<span class="token property">builtin</span> {
+</div>
+<div class="line-wrapper"><span class="line-number">107</span>    <span class="token property">color</span><span class="token punctuation delimiter">:</span> <span class="token function">var</span>(--token-builtin-color);
+</div>
+<div class="line-wrapper"><span class="line-number">108</span>}
+</div>
+<div class="line-wrapper"><span class="line-number">109</span>.<span class="token property">token</span>.<span class="token property">constant</span> {
+</div>
+<div class="line-wrapper"><span class="line-number">110</span>    <span class="token property">color</span><span class="token punctuation delimiter">:</span> <span class="token function">var</span>(--token-constant-color);
+</div>
+<div class="line-wrapper"><span class="line-number">111</span>}
+</div>
+<div class="line-wrapper"><span class="line-number">112</span>.<span class="token property">token</span>.<span class="token property">comment</span> {
+</div>
+<div class="line-wrapper"><span class="line-number">113</span>    <span class="token property">color</span><span class="token punctuation delimiter">:</span> <span class="token function">var</span>(--token-comment-color);
+</div>
+<div class="line-wrapper"><span class="line-number">114</span>}
+</div>
+<div class="line-wrapper"><span class="line-number">115</span>.<span class="token property">token</span>.<span class="token property">comment</span> .<span class="token property">string</span> {
+</div>
+<div class="line-wrapper"><span class="line-number">116</span>    <span class="token property">color</span><span class="token punctuation delimiter">:</span> <span class="token function">var</span>(--token-comment-color);
+</div>
+<div class="line-wrapper"><span class="line-number">117</span>}
+</div>
+<div class="line-wrapper"><span class="line-number">118</span>.<span class="token property">token</span>.<span class="token property">function</span> {
+</div>
+<div class="line-wrapper"><span class="line-number">119</span>    <span class="token property">color</span><span class="token punctuation delimiter">:</span> <span class="token function">var</span>(--token-function-color);
+</div>
+<div class="line-wrapper"><span class="line-number">120</span>}
+</div>
+<div class="line-wrapper"><span class="line-number">121</span>.<span class="token property">token</span>.<span class="token property">keyword</span> {
+</div>
+<div class="line-wrapper"><span class="line-number">122</span>    <span class="token property">color</span><span class="token punctuation delimiter">:</span> <span class="token function">var</span>(--token-keyword-color);
+</div>
+<div class="line-wrapper"><span class="line-number">123</span>}
+</div>
+<div class="line-wrapper"><span class="line-number">124</span>.<span class="token property">token</span>.<span class="token property">module</span> {
+</div>
+<div class="line-wrapper"><span class="line-number">125</span>    <span class="token property">color</span><span class="token punctuation delimiter">:</span> <span class="token function">var</span>(--token-module-color);
+</div>
+<div class="line-wrapper"><span class="line-number">126</span>}
+</div>
+<div class="line-wrapper"><span class="line-number">127</span>.<span class="token property">token</span>.<span class="token property">number</span> {
+</div>
+<div class="line-wrapper"><span class="line-number">128</span>    <span class="token property">color</span><span class="token punctuation delimiter">:</span> <span class="token function">var</span>(--token-number-color);
+</div>
+<div class="line-wrapper"><span class="line-number">129</span>}
+</div>
+<div class="line-wrapper"><span class="line-number">130</span>.<span class="token property">token</span>.<span class="token property">operator</span> {
+</div>
+<div class="line-wrapper"><span class="line-number">131</span>    <span class="token property">color</span><span class="token punctuation delimiter">:</span> <span class="token function">var</span>(--token-operator-color);
+</div>
+<div class="line-wrapper"><span class="line-number">132</span>}
+</div>
+<div class="line-wrapper"><span class="line-number">133</span>.<span class="token property">token</span>.<span class="token property">property</span> {
+</div>
+<div class="line-wrapper"><span class="line-number">134</span>    <span class="token property">color</span><span class="token punctuation delimiter">:</span> <span class="token function">var</span>(--token-property-color);
+</div>
+<div class="line-wrapper"><span class="line-number">135</span>}
+</div>
+<div class="line-wrapper"><span class="line-number">136</span>.<span class="token property">token</span>.<span class="token property">string</span> {
+</div>
+<div class="line-wrapper"><span class="line-number">137</span>    <span class="token property">color</span><span class="token punctuation delimiter">:</span> <span class="token function">var</span>(--token-string-color);
+</div>
+<div class="line-wrapper"><span class="line-number">138</span>}
+</div>
+<div class="line-wrapper"><span class="line-number">139</span>.<span class="token property">token</span>.<span class="token property">string</span>.<span class="token property">special</span> {
+</div>
+<div class="line-wrapper"><span class="line-number">140</span>    <span class="token property">color</span><span class="token punctuation delimiter">:</span> <span class="token function">var</span>(--token-special-string-color);
+</div>
+<div class="line-wrapper"><span class="line-number">141</span>}
+</div>
+<div class="line-wrapper"><span class="line-number">142</span>.<span class="token property">token</span>.<span class="token property">tag</span> {
+</div>
+<div class="line-wrapper"><span class="line-number">143</span>    <span class="token property">color</span><span class="token punctuation delimiter">:</span> <span class="token function">var</span>(--token-tag-color);
+</div>
+<div class="line-wrapper"><span class="line-number">144</span>}
+</div>
+<div class="line-wrapper"><span class="line-number">145</span>.<span class="token property">token</span>.<span class="token property">variable</span>.<span class="token property">builtin</span> {
+</div>
+<div class="line-wrapper"><span class="line-number">146</span>    <span class="token property">color</span><span class="token punctuation delimiter">:</span> <span class="token function">var</span>(--token-builtin-variable-color);
+</div>
+<div class="line-wrapper"><span class="line-number">147</span>}
+</div>
+<div class="line-wrapper"><span class="line-number">148</span>
+</div>
+<div class="line-wrapper"><span class="line-number">149</span><span class="token punctuation bracket">&lt;/</span><span class="token tag">style</span><span class="token punctuation bracket">&gt;</span>
+</div>
+<div class="line-wrapper"><span class="line-number">150</span>
+</div>
+<div class="line-wrapper"><span class="line-number">151</span><span class="token punctuation bracket">&lt;/</span><span class="token tag">body</span><span class="token punctuation bracket">&gt;</span>
+</div>
+<div class="line-wrapper"><span class="line-number">152</span><span class="token punctuation bracket">&lt;/</span><span class="token tag">html</span><span class="token punctuation bracket">&gt;</span>
+</div>
+</code></pre>
+
+<script>
+themeToggle.addEventListener('change', () => {
+  const h = document.querySelectorAll('html')[0];
+  h.dataset.theme = !h.dataset.theme ? 'dark' : '';
+});
+
+lineNumToggle.addEventListener('change', () => {
+  const code = document.querySelectorAll('code')[0];
+  const cName = 'hidden-line-numbers'
+  if (code.classList.contains(cName)) {
+     code.classList.remove(cName);
+  } else {
+     code.classList.add(cName);
+  }
+});
+</script>
+
+</body>
+</html>

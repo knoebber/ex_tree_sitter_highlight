@@ -1,0 +1,269 @@
+  <!DOCTYPE html>
+  <html>
+  <head>
+  <style>:root {
+    --code-block-background-color: #f5f5f5;
+    --code-default-color: black;
+    --token-attribute-color: rgb(91, 121, 227);
+    --token-builtin-color: rgb(102, 159, 89);
+    --token-comment-color: rgb(165, 166, 170);
+    --token-constant-color: rgb(121, 161, 103);
+    --token-function-color: rgb(91, 121, 227);
+    --token-keyword-color: rgb(164, 73, 171);
+    --token-module-color: rgb(56, 130, 183);
+    --token-number-color: rgb(173, 110, 37);
+    --token-operator-color: rgb(91, 121, 227);
+    --token-property-color: rgb(73, 110, 38);
+    --token-special-string-color: rgb(173, 110, 38);
+    --token-string-color: rgb(100, 159, 88);
+    --token-tag-color: rgb(164, 73, 171);
+    --token-builtin-variable-color: rgb(173, 110, 37);
+    --line-number-color: rgba(27, 31, 35, 0.3);
+}
+
+:root[data-theme="dark"] {
+    --code-block-background-color: rgb(40, 44, 51);
+    --code-default-color: rgb(172, 178, 190);
+    --token-attribute-color: rgb(173, 110, 37);
+    --token-builtin-color: rgb(223, 193, 132);
+    --token-comment-color: rgb(135, 142, 152);
+    --token-constant-color: rgb(115, 173, 233);
+    --token-function-color: rgb(115, 173, 233);
+    --token-keyword-color: rgb(180, 119, 207);
+    --token-module-color: rgb(180, 119, 207);
+    --token-number-color: rgb(172, 178, 190);
+    --token-operator-color: rgb(105, 169, 180);
+    --token-property-color: rgb(105, 169, 180);
+    --token-special-string-color: rgb(191, 149, 106);
+    --token-string-color: rgb(152, 181, 123);
+    --token-tag-color: rgb(115, 173, 233);
+    --token-builtin-variable-color: rgb(115, 173, 233);
+    --line-number-color: rgba(77, 81, 88);
+}
+
+.code-block code {
+    font-family:
+        Roboto Mono,
+        monospace;
+    display: grid;
+    line-height: 1.5;
+    color: var(--code-default-color);
+    background-color: var(--code-block-background-color);
+}
+
+.line-number {
+    user-select: none;
+    text-align: right;
+    padding: 0 10px;
+    color: var(--line-number-color);
+}
+
+.token.attribute {
+    color: var(--token-attribute-color);
+}
+.token.builtin {
+    color: var(--token-builtin-color);
+}
+.token.constant {
+    color: var(--token-constant-color);
+}
+.token.comment {
+    color: var(--token-comment-color);
+}
+.token.comment .string {
+    color: var(--token-comment-color);
+}
+.token.function {
+    color: var(--token-function-color);
+}
+.token.keyword {
+    color: var(--token-keyword-color);
+}
+.token.module {
+    color: var(--token-module-color);
+}
+.token.number {
+    color: var(--token-number-color);
+}
+.token.operator {
+    color: var(--token-operator-color);
+}
+.token.property {
+    color: var(--token-property-color);
+}
+.token.string {
+    color: var(--token-string-color);
+}
+.token.string.special {
+    color: var(--token-special-string-color);
+}
+.token.tag {
+    color: var(--token-tag-color);
+}
+.token.variable.builtin {
+    color: var(--token-builtin-variable-color);
+}
+</style>
+  </head>
+  <body>
+  <pre class="code-block language-elixir"><code>
+<div class="line-wrapper"><span class="line-number">1</span><span class="token keyword">defmodule</span> <span class="token module">TreeSitterHighlight</span> <span class="token keyword">do</span>
+</div>
+<div class="line-wrapper"><span class="line-number">2</span>  <span class="token comment">@</span><span class="token comment">moduledoc</span> <span class="token comment">&quot;&quot;&quot;</span>
+</div>
+<div class="line-wrapper"><span class="line-number">3</span><span class="token comment">    Elixir binding for https://docs.rs/tree-sitter-highlight/latest/tree_sitter_highlight/</span>
+</div>
+<div class="line-wrapper"><span class="line-number">4</span><span class="token comment">  &quot;&quot;&quot;</span>
+</div>
+<div class="line-wrapper"><span class="line-number">5</span>  <span class="token keyword">use</span> <span class="token module">Rustler</span><span class="token punctuation delimiter">,</span> <span class="token string special">otp_app: </span><span class="token string special">:ex_tree_sitter_highlight</span><span class="token punctuation delimiter">,</span> <span class="token string special">crate: </span><span class="token string">&quot;treesitterhighlight&quot;</span>
+</div>
+<div class="line-wrapper"><span class="line-number">6</span>
+</div>
+<div class="line-wrapper"><span class="line-number">7</span>  <span class="token comment">@</span><span class="token comment">doc</span> <span class="token comment">~S<span class="token comment">&quot;&quot;&quot;</span></span>
+</div>
+<div class="line-wrapper"><span class="line-number">8</span><span class="token comment">  Renders the given source code into html.</span>
+</div>
+<div class="line-wrapper"><span class="line-number">9</span><span class="token comment"></span>
+</div>
+<div class="line-wrapper"><span class="line-number">10</span><span class="token comment">  ## Examples</span>
+</div>
+<div class="line-wrapper"><span class="line-number">11</span><span class="token comment"></span>
+</div>
+<div class="line-wrapper"><span class="line-number">12</span><span class="token comment">      iex&gt; TreeSitterHighlight.render_html(&quot;1&quot;, :elixir)</span>
+</div>
+<div class="line-wrapper"><span class="line-number">13</span><span class="token comment">      {:ok, &quot;&lt;pre class=<span class="token string">\&quot;</span>code-block language-elixir<span class="token string">\&quot;</span>&gt;&lt;code&gt;\n&lt;div class=<span class="token string">\&quot;</span>line-wrapper<span class="token string">\&quot;</span>&gt;&lt;span class=<span class="token string">\&quot;</span>line-number<span class="token string">\&quot;</span>&gt;1&lt;/span&gt;&lt;span class=<span class="token string">\&quot;</span>token number<span class="token string">\&quot;</span>&gt;1&lt;/span&gt;\n&lt;/div&gt;\n&lt;/code&gt;&lt;/pre&gt;\n&quot;}</span>
+</div>
+<div class="line-wrapper"><span class="line-number">14</span><span class="token comment"></span>
+</div>
+<div class="line-wrapper"><span class="line-number">15</span><span class="token comment">      iex&gt; TreeSitterHighlight.render_html(&quot;1&quot;, :txt)</span>
+</div>
+<div class="line-wrapper"><span class="line-number">16</span><span class="token comment">      {:error, :unsupported_language}</span>
+</div>
+<div class="line-wrapper"><span class="line-number">17</span><span class="token comment">  <span class="token comment">&quot;&quot;&quot;</span></span>
+</div>
+<div class="line-wrapper"><span class="line-number">18</span>  <span class="token keyword">def</span> <span class="token function">render_html</span><span class="token punctuation bracket">(</span><span class="token comment">_source_code</span><span class="token punctuation delimiter">,</span> <span class="token comment">_language_atom</span><span class="token punctuation bracket">)</span><span class="token punctuation delimiter">,</span> <span class="token string special">do: </span><span class="token module">:erlang</span><span class="token operator">.</span><span class="token function">nif_error</span><span class="token punctuation bracket">(</span><span class="token string special">:nif_not_loaded</span><span class="token punctuation bracket">)</span>
+</div>
+<div class="line-wrapper"><span class="line-number">19</span>
+</div>
+<div class="line-wrapper"><span class="line-number">20</span>  <span class="token comment">@</span><span class="token comment">doc</span> <span class="token comment">~S<span class="token comment">&quot;&quot;&quot;</span></span>
+</div>
+<div class="line-wrapper"><span class="line-number">21</span><span class="token comment">  Returns a list of supported language atoms.</span>
+</div>
+<div class="line-wrapper"><span class="line-number">22</span><span class="token comment">  <span class="token comment">&quot;&quot;&quot;</span></span>
+</div>
+<div class="line-wrapper"><span class="line-number">23</span>  <span class="token keyword">def</span> <span class="token function">get_supported_languages</span><span class="token punctuation bracket">(</span><span class="token punctuation bracket">)</span><span class="token punctuation delimiter">,</span> <span class="token string special">do: </span><span class="token module">:erlang</span><span class="token operator">.</span><span class="token function">nif_error</span><span class="token punctuation bracket">(</span><span class="token string special">:nif_not_loaded</span><span class="token punctuation bracket">)</span>
+</div>
+<div class="line-wrapper"><span class="line-number">24</span>
+</div>
+<div class="line-wrapper"><span class="line-number">25</span>  <span class="token comment">@</span><span class="token comment">doc</span> <span class="token comment">~S<span class="token comment">&quot;&quot;&quot;</span></span>
+</div>
+<div class="line-wrapper"><span class="line-number">26</span><span class="token comment">  Returns a language atom for the file, or nil if the language isn&#39;t supported.</span>
+</div>
+<div class="line-wrapper"><span class="line-number">27</span><span class="token comment"></span>
+</div>
+<div class="line-wrapper"><span class="line-number">28</span><span class="token comment">  ## Examples</span>
+</div>
+<div class="line-wrapper"><span class="line-number">29</span><span class="token comment"></span>
+</div>
+<div class="line-wrapper"><span class="line-number">30</span><span class="token comment">      iex&gt; TreeSitterHighlight.get_language_from_filename(&quot;/path/file.ex&quot;)</span>
+</div>
+<div class="line-wrapper"><span class="line-number">31</span><span class="token comment">      :elixir</span>
+</div>
+<div class="line-wrapper"><span class="line-number">32</span><span class="token comment"></span>
+</div>
+<div class="line-wrapper"><span class="line-number">33</span><span class="token comment">      iex&gt; TreeSitterHighlight.get_language_from_filename(&quot;/path/file.txt&quot;)</span>
+</div>
+<div class="line-wrapper"><span class="line-number">34</span><span class="token comment">      nil</span>
+</div>
+<div class="line-wrapper"><span class="line-number">35</span><span class="token comment">  <span class="token comment">&quot;&quot;&quot;</span></span>
+</div>
+<div class="line-wrapper"><span class="line-number">36</span>  <span class="token keyword">def</span> <span class="token function">get_language_from_filename</span><span class="token punctuation bracket">(</span><span class="token comment">_filename</span><span class="token punctuation bracket">)</span><span class="token punctuation delimiter">,</span> <span class="token string special">do: </span><span class="token module">:erlang</span><span class="token operator">.</span><span class="token function">nif_error</span><span class="token punctuation bracket">(</span><span class="token string special">:nif_not_loaded</span><span class="token punctuation bracket">)</span>
+</div>
+<div class="line-wrapper"><span class="line-number">37</span>
+</div>
+<div class="line-wrapper"><span class="line-number">38</span>  <span class="token comment">@</span><span class="token comment">doc</span> <span class="token comment">~S<span class="token comment">&quot;&quot;&quot;</span></span>
+</div>
+<div class="line-wrapper"><span class="line-number">39</span><span class="token comment">  Returns CSS content with classes for highlighting and formatting html output.</span>
+</div>
+<div class="line-wrapper"><span class="line-number">40</span><span class="token comment">  See priv/default.css for an example of how to create your own stylesheet.</span>
+</div>
+<div class="line-wrapper"><span class="line-number">41</span><span class="token comment">  This stylesheet contains both a light and dark color scheme.</span>
+</div>
+<div class="line-wrapper"><span class="line-number">42</span><span class="token comment">  To toggle the dark scheme set data-theme=&quot;dark&quot; on the root &lt;html&gt; element.</span>
+</div>
+<div class="line-wrapper"><span class="line-number">43</span><span class="token comment">  <span class="token comment">&quot;&quot;&quot;</span></span>
+</div>
+<div class="line-wrapper"><span class="line-number">44</span>  <span class="token keyword">def</span> <span class="token function">get_default_css_content</span><span class="token punctuation bracket">(</span><span class="token punctuation bracket">)</span> <span class="token keyword">do</span>
+</div>
+<div class="line-wrapper"><span class="line-number">45</span>    <span class="token module">File</span><span class="token operator">.</span><span class="token function">read!</span><span class="token punctuation bracket">(</span><span class="token string">&quot;priv/default.css&quot;</span><span class="token punctuation bracket">)</span>
+</div>
+<div class="line-wrapper"><span class="line-number">46</span>  <span class="token keyword">end</span>
+</div>
+<div class="line-wrapper"><span class="line-number">47</span>
+</div>
+<div class="line-wrapper"><span class="line-number">48</span>  <span class="token comment">@</span><span class="token comment">doc</span> <span class="token comment">~S<span class="token comment">&quot;&quot;&quot;</span></span>
+</div>
+<div class="line-wrapper"><span class="line-number">49</span><span class="token comment">  Writes a complete html document with highlighted code within.</span>
+</div>
+<div class="line-wrapper"><span class="line-number">50</span><span class="token comment">  head_content should contain a stylesheet.</span>
+</div>
+<div class="line-wrapper"><span class="line-number">51</span><span class="token comment">  iex&gt; TreeSitterHighlight.write_highlighted_file(</span>
+</div>
+<div class="line-wrapper"><span class="line-number">52</span><span class="token comment">  ...&gt; &quot;lib/tree_sitter_highlight.ex&quot;,</span>
+</div>
+<div class="line-wrapper"><span class="line-number">53</span><span class="token comment">  ...&gt; &quot;example_output/ex_tree_sitter_highlight/tree_sitter_highlight.html&quot;,</span>
+</div>
+<div class="line-wrapper"><span class="line-number">54</span><span class="token comment">  ...&gt; &quot;&lt;style&gt;#{TreeSitterHighlight.get_default_css_content()}&lt;/style&gt;&quot;</span>
+</div>
+<div class="line-wrapper"><span class="line-number">55</span><span class="token comment">  ...&gt; )</span>
+</div>
+<div class="line-wrapper"><span class="line-number">56</span><span class="token comment">  :ok</span>
+</div>
+<div class="line-wrapper"><span class="line-number">57</span><span class="token comment">  <span class="token comment">&quot;&quot;&quot;</span></span>
+</div>
+<div class="line-wrapper"><span class="line-number">58</span>  <span class="token keyword">def</span> <span class="token function">write_highlighted_file</span><span class="token punctuation bracket">(</span>input_path<span class="token punctuation delimiter">,</span> output_path<span class="token punctuation delimiter">,</span> head_content<span class="token punctuation bracket">)</span>
+</div>
+<div class="line-wrapper"><span class="line-number">59</span>      <span class="token keyword">when</span> <span class="token function">is_binary</span><span class="token punctuation bracket">(</span>input_path<span class="token punctuation bracket">)</span> <span class="token keyword">and</span> <span class="token function">is_binary</span><span class="token punctuation bracket">(</span>output_path<span class="token punctuation bracket">)</span> <span class="token keyword">and</span> <span class="token function">is_binary</span><span class="token punctuation bracket">(</span>head_content<span class="token punctuation bracket">)</span> <span class="token keyword">do</span>
+</div>
+<div class="line-wrapper"><span class="line-number">60</span>    <span class="token keyword">with</span> <span class="token punctuation bracket">{</span><span class="token string special">:ok</span><span class="token punctuation delimiter">,</span> source_code<span class="token punctuation bracket">}</span> <span class="token operator">&lt;-</span> <span class="token module">File</span><span class="token operator">.</span><span class="token function">read</span><span class="token punctuation bracket">(</span>input_path<span class="token punctuation bracket">)</span><span class="token punctuation delimiter">,</span>
+</div>
+<div class="line-wrapper"><span class="line-number">61</span>         <span class="token punctuation bracket">{</span><span class="token string special">:ok</span><span class="token punctuation delimiter">,</span> html<span class="token punctuation bracket">}</span> <span class="token operator">&lt;-</span>
+</div>
+<div class="line-wrapper"><span class="line-number">62</span>           <span class="token constant builtin">__MODULE__</span><span class="token operator">.</span><span class="token function">render_html</span><span class="token punctuation bracket">(</span>source_code<span class="token punctuation delimiter">,</span> <span class="token function">get_language_from_filename</span><span class="token punctuation bracket">(</span>input_path<span class="token punctuation bracket">)</span><span class="token punctuation bracket">)</span><span class="token punctuation delimiter">,</span>
+</div>
+<div class="line-wrapper"><span class="line-number">63</span>         <span class="token string special">:ok</span> <span class="token operator">&lt;-</span>
+</div>
+<div class="line-wrapper"><span class="line-number">64</span>           <span class="token module">File</span><span class="token operator">.</span><span class="token function">write</span><span class="token punctuation bracket">(</span>output_path<span class="token punctuation delimiter">,</span> <span class="token string">~s<span class="token string">&quot;&quot;&quot;</span></span>
+</div>
+<div class="line-wrapper"><span class="line-number">65</span><span class="token string">             &lt;!DOCTYPE html&gt;</span>
+</div>
+<div class="line-wrapper"><span class="line-number">66</span><span class="token string">             &lt;html&gt;</span>
+</div>
+<div class="line-wrapper"><span class="line-number">67</span><span class="token string">             &lt;head&gt;</span>
+</div>
+<div class="line-wrapper"><span class="line-number">68</span><span class="token string">             <span class="token embedded">#{head_content}</span></span>
+</div>
+<div class="line-wrapper"><span class="line-number">69</span><span class="token string">             &lt;/head&gt;</span>
+</div>
+<div class="line-wrapper"><span class="line-number">70</span><span class="token string">             &lt;body&gt;</span>
+</div>
+<div class="line-wrapper"><span class="line-number">71</span><span class="token string">             <span class="token embedded">#{html}</span></span>
+</div>
+<div class="line-wrapper"><span class="line-number">72</span><span class="token string">             &lt;/body&gt;</span>
+</div>
+<div class="line-wrapper"><span class="line-number">73</span><span class="token string">             &lt;/html&gt;</span>
+</div>
+<div class="line-wrapper"><span class="line-number">74</span><span class="token string">           <span class="token string">&quot;&quot;&quot;</span></span><span class="token punctuation bracket">)</span> <span class="token keyword">do</span>
+</div>
+<div class="line-wrapper"><span class="line-number">75</span>      <span class="token string special">:ok</span>
+</div>
+<div class="line-wrapper"><span class="line-number">76</span>    <span class="token keyword">end</span>
+</div>
+<div class="line-wrapper"><span class="line-number">77</span>  <span class="token keyword">end</span>
+</div>
+<div class="line-wrapper"><span class="line-number">78</span><span class="token keyword">end</span>
+</div>
+</code></pre>
+
+  </body>
+  </html>

@@ -15,7 +15,29 @@
     --token-string-color: rgb(100, 159, 88);
     --token-tag-color: rgb(164, 73, 171);
     --token-builtin-variable-color: rgb(173, 110, 37);
+    --line-number-color: rgba(27, 31, 35, 0.3);
 }
+
+:root[data-theme="dark"] {
+    --code-block-background-color: rgb(40, 44, 51);
+    --code-default-color: rgb(172, 178, 190);
+    --token-attribute-color: rgb(173, 110, 37);
+    --token-builtin-color: rgb(223, 193, 132);
+    --token-comment-color: rgb(135, 142, 152);
+    --token-constant-color: rgb(115, 173, 233);
+    --token-function-color: rgb(115, 173, 233);
+    --token-keyword-color: rgb(180, 119, 207);
+    --token-module-color: rgb(180, 119, 207);
+    --token-number-color: rgb(172, 178, 190);
+    --token-operator-color: rgb(105, 169, 180);
+    --token-property-color: rgb(105, 169, 180);
+    --token-special-string-color: rgb(191, 149, 106);
+    --token-string-color: rgb(152, 181, 123);
+    --token-tag-color: rgb(115, 173, 233);
+    --token-builtin-variable-color: rgb(115, 173, 233);
+    --line-number-color: rgba(77, 81, 88);
+}
+
 .code-block code {
     font-family:
         Roboto Mono,
@@ -29,8 +51,8 @@
 .line-number {
     user-select: none;
     text-align: right;
-    color: rgba(27, 31, 35, 0.3);
     padding: 0 10px;
+    color: var(--line-number-color);
 }
 
 .token.attribute {
@@ -43,6 +65,9 @@
     color: var(--token-constant-color);
 }
 .token.comment {
+    color: var(--token-comment-color);
+}
+.token.comment .string {
     color: var(--token-comment-color);
 }
 .token.function {
