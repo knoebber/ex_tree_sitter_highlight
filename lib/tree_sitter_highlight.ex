@@ -48,6 +48,9 @@ defmodule TreeSitterHighlight do
   @doc ~S"""
   Writes a complete html document with highlighted code within.
   head_content should contain a stylesheet.
+
+  ## Example
+
   iex> TreeSitterHighlight.write_highlighted_file(
   ...> "lib/tree_sitter_highlight.ex",
   ...> "example_output/ex_tree_sitter_highlight/tree_sitter_highlight.html",
