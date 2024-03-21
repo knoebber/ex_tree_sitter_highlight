@@ -1,11 +1,21 @@
 # Elixir Tree Sitter Highlight
 
-Elixir nif binding for the rust crate
+[![Module Version](https://img.shields.io/hexpm/v/makeup.svg)](https://hex.pm/packages/ex_tree_sitter_highlight)
+[![Hex Docs](https://img.shields.io/badge/hex-docs-lightgreen.svg)](https://hexdocs.pm/ex_tree_sitter_highlight/TreeSitterHighlight.html)
+
+Tree Sitter Highlight uses
+[treesitter](https://tree-sitter.github.io/tree-sitter/)
+to transform source code into highlighted HTML.
+
+This is implemented with a nif binding to the rust crate
 [tree_sitter_higlight](https://docs.rs/tree-sitter-highlight/latest/tree_sitter_highlight/).
 
-## Installation
+## Why not [makeup](https://github.com/elixir-makeup/makeup)?
 
-Hex: https://hexdocs.pm/ex_tree_sitter_highlight/TreeSitterHighlight.html
+The main advantage is that adding language support is much easier since many
+tree sitter grammars have already been written. Tree sitter can also handle language injections, e.g. it can highlight heex code inside of an elixir string.
+
+## Installation
 
 The package can be installed by adding `ex_tree_sitter_highlight` to your list of dependencies in `mix.exs`:
 
