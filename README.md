@@ -1,11 +1,11 @@
 # Elixir Tree Sitter Highlight
 
-Elixir nif binding for
+Elixir nif binding for the rust crate
 [tree_sitter_higlight](https://docs.rs/tree-sitter-highlight/latest/tree_sitter_highlight/).
 
 ## Installation
 
-Hex: https://docs.rs/tree-sitter-highlight/latest/tree_sitter_highlight/
+Hex: https://hexdocs.pm/ex_tree_sitter_highlight/TreeSitterHighlight.html
 
 The package can be installed by adding `ex_tree_sitter_highlight` to your list of dependencies in `mix.exs`:
 
